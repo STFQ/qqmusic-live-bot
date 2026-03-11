@@ -1,0 +1,7 @@
+﻿.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+qqmusic_live_bot/data/logs/*.log
+qqmusic_live_bot/data/logs/*.jsonl

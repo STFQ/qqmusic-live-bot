@@ -1,0 +1,38 @@
+﻿{
+  "device_addr": "127.0.0.1:5555",
+  "input_box_x": 159,
+  "input_box_y": 1418,
+  "dry_run": true,
+  "mode": "auto",
+  "profile": {
+    "name": "Cavalier",
+    "persona": "light_funny_assistant",
+    "max_reply_len": 18
+  },
+  "flags": {
+    "enable_welcome": true,
+    "enable_gift_thanks": true,
+    "enable_auto_reply": false,
+    "enable_warmup": false,
+    "enable_pk_remind": true,
+    "enable_ocr_fallback": false
+  },
+  "limits": {
+    "main_loop_interval": 0.35,
+    "welcome_interval": 1.2,
+    "gift_thank_interval": 3.0,
+    "chat_reply_interval": 10.0,
+    "warmup_interval": 45.0,
+    "post_send_cooldown": 1.0,
+    "dedupe_ttl": 120.0,
+    "collector_line_ttl": 8.0,
+    "ocr_interval": 3.0,
+    "ocr_trigger_line_count": 2.0,
+    "gift_merge_window": 4.0
+  },
+  "logging": {
+    "console_output": false,
+    "pk_time": false,
+    "dry_run": false
+  }
+}

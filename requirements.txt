@@ -1,0 +1,4 @@
+﻿uiautomator2==3.5.0
+
+# Optional: only needed when enable_ocr_fallback=true
+# paddleocr==2.10.0
