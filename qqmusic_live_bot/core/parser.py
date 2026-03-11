@@ -13,6 +13,7 @@ WELCOME_PATTERNS = [
 GIFT_PATTERNS = [
     re.compile(r"^\s*(.*?)\s*[:：]?\s*送出\s*(.+?)\s*[xX×]\s*(\d+)\s*$"),
     re.compile(r"^\s*(.*?)\s*[:：]?\s*送出\s*(.+?)\s*$"),
+    re.compile(r"^\s*(.*?)\s*[:：]?\s*送\s*(.+?)\s*[xX×]\s*(\d+)\s*$"),
     re.compile(r"^(.*?)\s(?:赠送了|投喂了|送来了)\s(.+)$"),
 ]
 
@@ -27,6 +28,7 @@ GIFT_EXCLUDE_PATTERNS = [
 ]
 PK_CONTEXT_KEYWORDS = ["PK", "pk", "倒计时", "排位赛", "抢道具", "送礼", "助力", "上分"]
 PK_EXCLUDE_KEYWORDS = ["结果展示", "胜负已分", "胜利", "失败", "本场MVP", "MVP", "魔法合成", "热门榜", "抢头条"]
+ICON_PLACEHOLDER_PATTERN = re.compile(r"\[(?:ICON)+\]")
 
 
 class EventParser:
@@ -42,19 +44,20 @@ class EventParser:
         return events
 
     def _parse_line(self, line: str, ts: float) -> Event | None:
+        cleaned_line = self._strip_icon_placeholders(line)
         for pattern in WELCOME_PATTERNS:
-            match = pattern.search(line)
+            match = pattern.search(cleaned_line)
             if match:
                 user = match.group(1).strip()
                 if user and "系统" not in user:
                     return Event(type=EventType.WELCOME, raw=line, ts=ts, user=user, content="enter")
-        if any(pattern.search(line) for pattern in GIFT_EXCLUDE_PATTERNS):
-            return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=line)
+        if any(pattern.search(cleaned_line) for pattern in GIFT_EXCLUDE_PATTERNS):
+            return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=cleaned_line)
         for pattern in GIFT_PATTERNS:
-            match = pattern.search(line)
+            match = pattern.search(cleaned_line)
             if match:
                 user = match.group(1).strip()
-                gift = match.group(2).strip()
+                gift = self._strip_icon_placeholders(match.group(2))
                 if not user or "系统" in user:
                     return None
                 count = 1
@@ -65,15 +68,18 @@ class EventParser:
                         count = 1
                 return Event(type=EventType.GIFT, raw=line, ts=ts, user=user, content=gift or "礼物", count=count)
         for pattern in CHAT_PATTERNS:
-            match = pattern.search(line)
+            match = pattern.search(cleaned_line)
             if match:
                 user = match.group(1).strip()
                 content = match.group(2).strip()
                 if user and content and "系统" not in user:
                     return Event(type=EventType.CHAT, raw=line, ts=ts, user=user, content=content)
-        if any(keyword in line for keyword in SYSTEM_KEYWORDS):
-            return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=line)
-        return Event(type=EventType.CHAT, raw=line, ts=ts, content=line)
+        if any(keyword in cleaned_line for keyword in SYSTEM_KEYWORDS):
+            return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=cleaned_line)
+        return Event(type=EventType.CHAT, raw=line, ts=ts, content=cleaned_line)
+
+    def _strip_icon_placeholders(self, text: str) -> str:
+        return re.sub(r"\s+", " ", ICON_PLACEHOLDER_PATTERN.sub("", text or "")).strip()
 
     def _has_keywords(self, line: str, keywords: Iterable[str]) -> bool:
         return any(keyword in line for keyword in keywords)
