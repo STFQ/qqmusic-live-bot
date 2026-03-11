@@ -44,13 +44,13 @@ NOISE_SUBSTRINGS = (
 )
 
 
-@dataclass(slots=True)
+@dataclass
 class TextNode:
     text: str
     bounds: tuple[int, int, int, int]
 
 
-@dataclass(slots=True)
+@dataclass
 class CollectorState:
     recent_lines: dict[str, float]
     last_ocr_at: float = 0.0

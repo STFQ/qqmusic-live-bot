@@ -16,7 +16,7 @@ DEFAULT_LOGGING = {
 }
 
 
-@dataclass(slots=True)
+@dataclass
 class RuntimeConfig:
     device_addr: str = "127.0.0.1:7555"
     input_box_x: int = 159

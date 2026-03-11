@@ -13,7 +13,7 @@ class EventType(str, Enum):
     SYSTEM = "system"
 
 
-@dataclass(slots=True)
+@dataclass
 class Event:
     type: EventType
     raw: str
@@ -28,14 +28,14 @@ class Event:
         return f"{self.type}|{self.user}|{self.content}|{self.count}|{self.raw}"
 
 
-@dataclass(slots=True)
+@dataclass
 class Frame:
     ts: float
     raw_lines: list[str]
     lines: list[str]
 
 
-@dataclass(slots=True)
+@dataclass
 class ReplyAction:
     text: str
     reason: str

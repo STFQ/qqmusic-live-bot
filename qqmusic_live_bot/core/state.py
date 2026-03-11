@@ -3,7 +3,7 @@
 from dataclasses import dataclass, field
 
 
-@dataclass(slots=True)
+@dataclass
 class BotState:
     mode: str = "auto"
     last_send_time: float = 0.0
