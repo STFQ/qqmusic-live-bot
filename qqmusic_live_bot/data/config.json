@@ -7,7 +7,7 @@
   "profile": {
     "name": "Cavalier",
     "persona": "light_funny_assistant",
-    "max_reply_len": 18
+    "max_reply_len": 30
   },
   "flags": {
     "enable_welcome": true,

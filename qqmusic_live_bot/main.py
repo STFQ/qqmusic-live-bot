@@ -12,7 +12,7 @@ from .core.sender import MessageSender
 from .core.state import BotState
 from .services.logger import BotLogger
 from .services.storage import MemoryService
-from .strategy.filters import load_blacklist, should_skip_text, trim_reply
+from .strategy.filters import load_blacklist, should_skip_text, trim_gift_reply, trim_reply
 
 
 class LiveBotApp:
@@ -81,7 +81,11 @@ class LiveBotApp:
                     time.sleep(float(self.config.limits["main_loop_interval"]))
                     continue
 
-                text = trim_reply(action.text, int(self.config.profile["max_reply_len"]))
+                max_reply_len = int(self.config.profile["max_reply_len"])
+                if action.event_type == "gift":
+                    text = trim_gift_reply(action.user, str(action.meta.get("gift", "")), max_reply_len)
+                else:
+                    text = trim_reply(action.text, max_reply_len)
                 success = sender.send_message(text)
                 if success:
                     now_ts = time.time()

@@ -71,4 +71,11 @@ class GiftFeature:
         text = pick(GIFT_TEMPLATES, user=user, gift=gift_label)
         raw = f"gift:{user}:{gift}:{count}"
         self.pending.pop(key, None)
-        return ReplyAction(text=text, reason="gift_thanks", event_type="gift", user=user, raw=raw)
+        return ReplyAction(
+            text=text,
+            reason="gift_thanks",
+            event_type="gift",
+            user=user,
+            raw=raw,
+            meta={"gift": gift_label},
+        )

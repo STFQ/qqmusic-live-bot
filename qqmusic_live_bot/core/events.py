@@ -42,3 +42,4 @@ class ReplyAction:
     event_type: str
     user: str = ""
     raw: str = ""
+    meta: dict[str, Any] = field(default_factory=dict)
