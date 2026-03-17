@@ -44,6 +44,8 @@ NOISE_SUBSTRINGS = (
     "合成",
     "魔法",
     "白银礼物卡",
+    "赠 给",
+    "赠给",
 )
 
 
@@ -169,7 +171,14 @@ class TextCollector:
 
     def _collect_textview_lines(self, device) -> list[str]:
         window_size = self._device_window_size(device)
-        nodes = device.xpath("//android.widget.TextView").all()
+        
+        try:
+            # 恢复使用一次性 Dump XML 的高效批量获取方式
+            nodes = device.xpath("//android.widget.TextView").all()
+        except Exception:
+            # 万一获取失败，返回空列表等待下一轮，不至于让程序崩溃
+            return []
+            
         candidates: list[TextNode] = []
 
         for node in nodes:

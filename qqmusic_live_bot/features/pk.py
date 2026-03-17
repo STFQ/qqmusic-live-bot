@@ -13,18 +13,27 @@ class PKFeature:
             state.pk_active = False
             state.last_pk_seconds = None
             return None
+            
         seconds = int(pk_events[-1].meta.get("seconds", 0))
         state.pk_active = True
+        
         if seconds >= PK_RULES["reset_at"]:
             state.last_pk_seconds = seconds
             return None
+            
         if now_ts - state.last_pk_time < LIMITS["gift_thank_interval"]:
             return None
+            
+        # 1. 冲刺提醒：判断逻辑不变
         if seconds <= PK_RULES["final_remind_at"] and (state.last_pk_seconds is None or state.last_pk_seconds > PK_RULES["final_remind_at"]):
             state.last_pk_seconds = seconds
             return ReplyAction(text=pick(PK_FINAL_TEMPLATES), reason="pk_final", event_type="pk_timer")
-        if seconds <= PK_RULES["item_remind_at"] and (state.last_pk_seconds is None or state.last_pk_seconds > PK_RULES["item_remind_at"]):
+            
+        # 2. [核心修复] 抢道具提醒：增加 240 秒（4分钟）的强制下限门槛
+        # 只有在 4 分钟到预定提醒时间之间的这个窗口期，才允许发抢道具弹幕
+        if 240 <= seconds <= PK_RULES["item_remind_at"] and (state.last_pk_seconds is None or state.last_pk_seconds > PK_RULES["item_remind_at"]):
             state.last_pk_seconds = seconds
             return ReplyAction(text=pick(PK_ITEM_TEMPLATES), reason="pk_item", event_type="pk_timer")
+            
         state.last_pk_seconds = seconds
         return None

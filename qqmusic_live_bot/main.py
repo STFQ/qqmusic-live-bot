@@ -1,5 +1,7 @@
 ﻿from __future__ import annotations
 
+import queue
+import threading
 import time
 from pathlib import Path
 
@@ -34,6 +36,43 @@ class LiveBotApp:
         self.parser = EventParser()
         self.scheduler = Scheduler(self.config.flags)
         self.state = BotState(mode=self.config.mode)
+        
+        # [新增] 消息队列：用于主抓取线程和发送线程之间传递要发送的弹幕
+        self.action_queue = queue.Queue()
+        self.is_running = False
+
+    def _sender_thread_worker(self, sender: MessageSender) -> None:
+        """[新增] 独立的发送线程：只负责从队列取词并模拟点击发送"""
+        self.logger.info("后台发送线程已启动，待命完毕！")
+        while self.is_running:
+            try:
+                # 阻塞等待队列里的任务，超时时间1秒（防止线程卡死无法退出）
+                action, text = self.action_queue.get(timeout=1.0)
+            except queue.Empty:
+                continue
+
+            try:
+                success = sender.send_message(text)
+                if success:
+                    # 发送成功，更新各种事后状态并写入记录
+                    now_ts = time.time()
+                    self.state.mark_sent(action.event_type, now_ts)
+                    dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
+                    self.state.sent_fingerprints[dedupe_key] = now_ts
+                    
+                    if action.user:
+                        self.memory.touch_user(action.user, action.event_type, action.raw or text)
+                    self.logger.info(f"发送成功 [{action.reason}] -> {text}")
+                    # 发送完休息一下（不影响主线程抓取）
+                    time.sleep(float(self.config.limits["post_send_cooldown"]))
+                else:
+                    self.logger.info(f"发送失败 [{action.reason}] -> {text}")
+                    time.sleep(1.5)
+            except Exception as e:
+                self.logger.info(f"发送动作异常: {e}")
+                time.sleep(1)
+            finally:
+                self.action_queue.task_done()
 
     def run(self) -> None:
         device = DeviceSession(self.config.device_addr).connect()
@@ -46,14 +85,21 @@ class LiveBotApp:
             log_dry_run=bool(self.config.logging["dry_run"]),
         )
         self.logger.info(
-            f"稳定版 V1 已启动 | mode={self.state.mode} | dry_run={self.config.dry_run} | device={self.config.device_addr} | ocr={self.config.flags['enable_ocr_fallback']}"
+            f"稳定版 V1 已启动(双线程极速版) | mode={self.state.mode} | dry_run={self.config.dry_run} | device={self.config.device_addr}"
         )
 
-        while True:
+        # 启动后台发送线程
+        self.is_running = True
+        sender_thread = threading.Thread(target=self._sender_thread_worker, args=(sender,), daemon=True)
+        sender_thread.start()
+
+        while self.is_running:
             try:
+                # 主线程全速抓取屏幕，绝不停歇
                 frame = self.collector.collect(device)
                 self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
                 frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
+                
                 if not frame.lines:
                     time.sleep(float(self.config.limits["main_loop_interval"]))
                     continue
@@ -86,21 +132,23 @@ class LiveBotApp:
                     text = trim_gift_reply(action.user, str(action.meta.get("gift", "")), max_reply_len)
                 else:
                     text = trim_reply(action.text, max_reply_len)
-                success = sender.send_message(text)
-                if success:
-                    now_ts = time.time()
-                    self.state.mark_sent(action.event_type, now_ts)
-                    dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
-                    self.state.sent_fingerprints[dedupe_key] = now_ts
-                    if action.user:
-                        self.memory.touch_user(action.user, action.event_type, action.raw or text)
-                    self.logger.info(f"发送成功 [{action.reason}] -> {text}")
-                    time.sleep(float(self.config.limits["post_send_cooldown"]))
-                else:
-                    self.logger.info(f"发送失败 [{action.reason}] -> {text}")
-                    time.sleep(1.5)
+
+                # [核心逻辑] 不再直接调用发送，而是推入队列
+                self.logger.info(f"准备发送(加入队列) [{action.reason}] -> {text}")
+                
+                # 乐观预先标记（假装已经发了）：防止由于队列拥挤、发送线程还没发出去期间，
+                # 主线程又抓到了同样的事件，导致重复加入队列
+                now_ts = time.time()
+                self.state.mark_sent(action.event_type, now_ts)
+                dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
+                self.state.sent_fingerprints[dedupe_key] = now_ts
+                
+                # 推入队列，主循环立刻进行下一次抓取
+                self.action_queue.put((action, text))
+
             except KeyboardInterrupt:
-                self.logger.info("已手动停止")
+                self.logger.info("已手动停止，正在关闭...")
+                self.is_running = False
                 break
             except Exception as exc:
                 self.logger.info(f"主循环异常: {exc}")

@@ -1,4 +1,774 @@
-﻿{
-  "users": {},
+{
+  "users": {
+    "手握日月摘星辰！世间无我这般人": {
+      "gift_count": 11,
+      "chat_count": 0,
+      "notes": [
+        "gift:手握日月摘星辰！世间无我这般人:好运羽签:1000",
+        "gift:手握日月摘星辰！世间无我这般人:好运羽签:216",
+        "gift:手握日月摘星辰！世间无我这般人:饭团:63",
+        "gift:手握日月摘星辰！世间无我这般人:魔力徽章:2",
+        "gift:手握日月摘星辰！世间无我这般人:魔力徽章:1"
+      ]
+    },
+    "王睿 赠": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:王睿 赠:给 鹤望兰..若沁 [IMG]:1"
+      ]
+    },
+    "Cavalier": {
+      "gift_count": 56,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:爱心:3",
+        "gift:Cavalier:好运羽签:1776",
+        "gift:Cavalier:许愿灯:12"
+      ]
+    },
+    ".. 赠": {
+      "gift_count": 5,
+      "chat_count": 0,
+      "notes": [
+        "gift:.. 赠:给 苏默 [IMG]:5",
+        "gift:.. 赠:给 苏默 [IMG]:5",
+        "gift:.. 赠:给 苏默 [IMG]:5",
+        "gift:.. 赠:给 苏默 [IMG]:5",
+        "gift:.. 赠:给 苏默 [IMG]:10"
+      ]
+    },
+    "Cavalier：师傅你这两天好入睡吗 Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：师傅你这两天好入睡吗 Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier：师傅你这两天好入睡吗Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：师傅你这两天好入睡吗Cavalier:爱心:1"
+      ]
+    },
+    "PK即将结束，赶快": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:PK即将结束，赶快:礼帮助主播获得胜利吧～ Cavalier：送 爱心:1",
+        "gift:PK即将结束，赶快:礼帮助主播获得胜利吧～Cavalier：送 爱心:1"
+      ]
+    },
+    "ʚɞ岁儿牌猪肚鸡........ 赠": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:ʚɞ岁儿牌猪肚鸡........ 赠:给 岁儿 [IMG]:10"
+      ]
+    },
+    "Cavalier：我们的要在纸钱上写名的 Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：我们的要在纸钱上写名的 Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier：我们的要在纸钱上写名的Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：我们的要在纸钱上写名的Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier：就很棒了 Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：就很棒了 Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier：就很棒了Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：就很棒了Cavalier:爱心:1"
+      ]
+    },
+    "三万天 赠": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:三万天 赠:给 漫野·Ｒ [IMG]:1"
+      ]
+    },
+    "小煤球": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:小煤球:爱心:1",
+        "gift:小煤球:打call:1"
+      ]
+    },
+    "噔噔蹬蹬": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:打call:1"
+      ]
+    },
+    "拜神不如拜仁 赠": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:拜神不如拜仁 赠:给 nono.. [IMG]:7",
+        "gift:拜神不如拜仁 赠:给 nono.. [IMG]:8"
+      ]
+    },
+    "Cavalier：差点就 Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：差点就 Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier：差点就Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：差点就Cavalier:爱心:1"
+      ]
+    },
+    "Cavalier Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier Cavalier:爱心:3"
+      ]
+    },
+    "CavalierCavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:CavalierCavalier:爱心:3"
+      ]
+    },
+    "十八": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:十八"
+      ]
+    },
+    "贝贝 赠": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:贝贝 赠:给 十三幺（大吉大利） [IMG]:1"
+      ]
+    },
+    "99麻麻.. 赠": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:99麻麻.. 赠:给 N9 [IMG]:10"
+      ]
+    },
+    "1马雯雯的妹夫": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:1马雯雯的妹夫"
+      ]
+    },
+    "114和71": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:114和71"
+      ]
+    },
+    "2诺澜丶103": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2诺澜丶103"
+      ]
+    },
+    "二十一日": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:二十一日"
+      ]
+    },
+    "无幽大人": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:无幽大人"
+      ]
+    },
+    "2往日时光wrsg": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2往日时光wrsg"
+      ]
+    },
+    "2鲸鱼丿贪吃": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2鲸鱼丿贪吃"
+      ]
+    },
+    "1绿宝石的裂空座": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:1绿宝石的裂空座"
+      ]
+    },
+    "2荣宸Cherish": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2荣宸Cherish"
+      ]
+    },
+    "3慕色默": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:3慕色默"
+      ]
+    },
+    "小鱼干桂.": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小鱼干桂."
+      ]
+    },
+    "雅..": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:雅..:饭团:100"
+      ]
+    },
+    "....纪念": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:....纪念"
+      ]
+    },
+    "慕色默": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:慕色默:饭团:10",
+        "gift:慕色默:潮流打call:1"
+      ]
+    },
+    "2我对分没兴趣": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2我对分没兴趣"
+      ]
+    },
+    "大大大大白嫖怪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:大大大大白嫖怪",
+        "welcome:大大大大白嫖怪",
+        "welcome:大大大大白嫖怪"
+      ]
+    },
+    "2满身薄雪压星河": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:2满身薄雪压星河"
+      ]
+    },
+    "豆豆": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:豆豆"
+      ]
+    },
+    "ʚ囍劇ɞ": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "gift:ʚ囍劇ɞ:灌篮高手:1",
+        "gift:ʚ囍劇ɞ:华簪映颜:1",
+        "gift:ʚ囍劇ɞ:暮光恋人:1",
+        "gift:ʚ囍劇ɞ:白羊座女神:1"
+      ]
+    },
+    "夏经昊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:夏经昊"
+      ]
+    },
+    "冷静看清现实": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:冷静看清现实"
+      ]
+    },
+    "原陌xback..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:原陌xback.."
+      ]
+    },
+    "心心..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:心心.."
+      ]
+    },
+    "花泠缘": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:花泠缘",
+        "welcome:花泠缘",
+        "welcome:花泠缘",
+        "welcome:花泠缘"
+      ]
+    },
+    "是聪聪阿": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:是聪聪阿",
+        "welcome:是聪聪阿",
+        "welcome:是聪聪阿"
+      ]
+    },
+    "灵均儿是....": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:灵均儿是...."
+      ]
+    },
+    "仙儿吾爱": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:仙儿吾爱:灌篮高手:1"
+      ]
+    },
+    "阿列克西别": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:阿列克西别",
+        "welcome:阿列克西别",
+        "welcome:阿列克西别",
+        "welcome:阿列克西别"
+      ]
+    },
+    "Cai杰杰": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Cai杰杰",
+        "welcome:Cai杰杰"
+      ]
+    },
+    "讲故事的人lucky": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:讲故事的人lucky",
+        "welcome:讲故事的人lucky"
+      ]
+    },
+    "姝涵⁠‭⁧~喵⁧‭": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:姝涵⁠‭⁧~喵⁧‭"
+      ]
+    },
+    "Buddy丶承龙": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Buddy丶承龙"
+      ]
+    },
+    "諾糯懦锘諾言": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:諾糯懦锘諾言",
+        "welcome:諾糯懦锘諾言"
+      ]
+    },
+    "桔子皇后": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:桔子皇后"
+      ]
+    },
+    "鲸鱼丿贪吃": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:鲸鱼丿贪吃"
+      ]
+    },
+    "志方": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:志方"
+      ]
+    },
+    "是爱兔兔的萌萌呀": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:是爱兔兔的萌萌呀"
+      ]
+    },
+    "Hing": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "gift:Hing:饭团:31",
+        "gift:Hing:潮流打call:1",
+        "gift:Hing:pick me呀:1",
+        "gift:Hing:刷我滴卡:1"
+      ]
+    },
+    "Summer~ 蔷薇花": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Summer~ 蔷薇花"
+      ]
+    },
+    ".. 彬彬·三叶草·糖..": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:.. 彬彬·三叶草·糖..:许愿灯:1"
+      ]
+    },
+    "七千": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:七千:潮流打call:1"
+      ]
+    },
+    "小幸运": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小幸运"
+      ]
+    },
+    "Lʸᵘ-夏以": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Lʸᵘ-夏以"
+      ]
+    },
+    "咲": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:咲"
+      ]
+    },
+    "乌云函": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:乌云函"
+      ]
+    },
+    "愿": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:愿"
+      ]
+    },
+    "丿小李丶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:丿小李丶"
+      ]
+    },
+    "弥猫丨深巷丶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:弥猫丨深巷丶"
+      ]
+    },
+    "小残月槿䅾季": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小残月槿䅾季"
+      ]
+    },
+    "听雨思人Silence": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:听雨思人Silence",
+        "welcome:听雨思人Silence"
+      ]
+    },
+    "情缘": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:情缘"
+      ]
+    },
+    "野狼": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:野狼"
+      ]
+    },
+    "三号丶三岁": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:三号丶三岁"
+      ]
+    },
+    "芦芦复回原来的头像": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:芦芦复回原来的头像"
+      ]
+    },
+    "寶呗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:寶呗"
+      ]
+    },
+    "我是男人听我的": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我是男人听我的"
+      ]
+    },
+    "天残少年wave": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:天残少年wave"
+      ]
+    },
+    "容嬷嬷的春天": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:容嬷嬷的春天"
+      ]
+    },
+    "我想喝鲜榨岑汁c": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我想喝鲜榨岑汁c"
+      ]
+    },
+    "往日时光wrsg": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:往日时光wrsg"
+      ]
+    },
+    "空空": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:空空"
+      ]
+    },
+    "小小鱼宝o": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小小鱼宝o"
+      ]
+    },
+    "介不无敌了": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:介不无敌了"
+      ]
+    },
+    "烦心事": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:烦心事"
+      ]
+    },
+    "乖乖娜娜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:乖乖娜娜"
+      ]
+    },
+    "小妖..": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:小妖..:饭团:942"
+      ]
+    },
+    "愚人甚平": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:愚人甚平",
+        "welcome:愚人甚平"
+      ]
+    },
+    "雨丶纪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:雨丶纪"
+      ]
+    },
+    "超级无敌宇宙第一T酱": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:超级无敌宇宙第一T酱"
+      ]
+    },
+    "上山打老虎✨": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:上山打老虎✨"
+      ]
+    },
+    "诺澜丶103": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:诺澜丶103"
+      ]
+    },
+    "紫气、": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:紫气、:星愿信笺:3776",
+        "gift:紫气、:玫瑰星砂:9999",
+        "gift:紫气、:许愿灯:10"
+      ]
+    },
+    "听不懂你在说什么": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:听不懂你在说什么"
+      ]
+    },
+    "媛宝11大人": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:媛宝11大人"
+      ]
+    },
+    "我对分没兴趣": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我对分没兴趣"
+      ]
+    },
+    "阿良良木梨": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:阿良良木梨"
+      ]
+    },
+    "几度雨停": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:几度雨停"
+      ]
+    },
+    "徐徐徐小博": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:徐徐徐小博"
+      ]
+    },
+    "起航": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:起航"
+      ]
+    },
+    "和71": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:和71"
+      ]
+    },
+    "天一": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:天一"
+      ]
+    }
+  },
   "room_notes": []
 }
