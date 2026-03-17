@@ -9,6 +9,9 @@ from .events import Frame
 from .ocr import OCRFallback
 from ..strategy.filters import normalize_text
 
+import cv2
+import numpy as np
+
 CHROME_NOISE_TEXTS = {
     "ATX",
     "LibChecker",
@@ -185,22 +188,19 @@ class TextCollector:
             return []
         if now_ts - self.state.last_ocr_at < self.ocr_interval:
             return []
-        image_path = Path(tempfile.gettempdir()) / f"qqmusic_live_bot_{int(now_ts)}.png"
+        
         try:
-            result = device.screenshot(str(image_path))
-            if hasattr(result, "save"):
-                result.save(image_path)
-            lines = self.ocr.scan(image_path)
+            # 直接获取内存中的 PIL Image 或 bytes，不落盘（具体取决于你的 device 库，如 uiautomator2）
+            image = device.screenshot() 
+            # 将 PIL Image 转换为 numpy 数组供 PaddleOCR 直接读取
+            img_array = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+            
+            # ocr.scan 也需要相应修改，接收 numpy array 而不是路径
+            lines = self.ocr.scan_image(img_array) 
             self.state.last_ocr_at = now_ts
             return lines
         except Exception:
             return []
-        finally:
-            if image_path.exists():
-                try:
-                    image_path.unlink()
-                except OSError:
-                    pass
 
     def collect(self, device) -> Frame:
         now_ts = time.time()
