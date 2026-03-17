@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 
 import json
+import time
 from pathlib import Path
 from typing import Any
 
@@ -33,12 +34,15 @@ class MemoryService:
             },
         )
         self.data = self.store.load()
+        # 增加一个变量记录上次保存的时间
+        self.last_save_time = time.time()
 
     def touch_user(self, username: str, event_type: str, detail: str) -> None:
         if not username:
             return
         users = self.data.setdefault("users", {})
         profile = users.setdefault(username, {"gift_count": 0, "chat_count": 0, "notes": []})
+        
         if event_type == "gift":
             profile["gift_count"] = int(profile.get("gift_count", 0)) + 1
         if event_type == "chat":
@@ -46,7 +50,12 @@ class MemoryService:
         if detail:
             profile.setdefault("notes", []).append(detail[:60])
             profile["notes"] = profile["notes"][-5:]
-        self.store.save(self.data)
+            
+        # 优化：节流保存，避免频繁 I/O 阻塞主线程
+        now = time.time()
+        if now - self.last_save_time > 10.0:
+            self.store.save(self.data)
+            self.last_save_time = now
 
     def add_room_note(self, note: str) -> None:
         if not note:
@@ -55,6 +64,9 @@ class MemoryService:
         if note not in notes:
             notes.append(note)
             self.data["room_notes"] = notes[-10:]
-            self.store.save(self.data)
-
-
+            
+            # 同样应用节流保存
+            now = time.time()
+            if now - self.last_save_time > 10.0:
+                self.store.save(self.data)
+                self.last_save_time = now
