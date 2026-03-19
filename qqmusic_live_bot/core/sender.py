@@ -2,8 +2,6 @@
 
 import time
 
-from ..strategy.rules import SENDER_RULES
-
 
 class MessageSender:
     def __init__(self, device, input_x: int, input_y: int, logger, dry_run: bool = True, log_dry_run: bool = True):
@@ -16,72 +14,63 @@ class MessageSender:
 
     def focus_input(self) -> bool:
         try:
-            # 盲点坐标极其迅速，点完直接默认输入框已弹出，不再花时间去验证它是否存在
+            # 盲点坐标唤起输入框
             self.device.click(self.input_x, self.input_y)
-            time.sleep(SENDER_RULES["send_prepare_delay"])
+            # 唤起输入法确实需要一点点物理时间，给个极短的 0.1s 缓冲
+            time.sleep(0.1)
             return True
         except Exception as exc:
             self.logger.info(f"focus_input 失败: {exc}")
             return False
 
-    def set_text(self, text: str) -> bool:
-        try:
-            # 【核心优化】利用开启了的 FastInputIME，直接发送全屏广播键入文本！
-            # 彻底绕过寻找 EditText 节点的龟速过程。延迟几乎为 0！
-            self.device.clear_text() 
-            self.device.send_keys(str(text))
-            time.sleep(SENDER_RULES["send_after_set_delay"])
-            return True
-        except Exception as exc:
-            self.logger.info(f"set_text 失败: {exc}")
+    def send_message(self, text: str) -> bool:
+        if not text:
             return False
 
-    def click_send(self) -> bool:
+        if self.dry_run:
+            if self.log_dry_run:
+                self.logger.info(f"[DRY_RUN] {text}")
+            return True
+
         try:
-            # 【核心优化】click_exists(timeout=0) 能在瞬间完成查找和点击。
-            # 找不到就立刻 fallback 到模拟按压回车键，整个过程丝滑无卡顿。
+            # 1. 点击唤起输入法
+            if not self.focus_input():
+                self.recover_ui()
+                return False
+
+            # 2. 极速注入文本
+            self.device.clear_text()
+            self.device.send_keys(str(text))
+
+            # 3. 触发发送 (优先点发送，找不到就秒敲回车)
             if not self.device(text="发送").click_exists(timeout=0):
                 self.device.press("enter")
-            time.sleep(SENDER_RULES["send_after_send_delay"])
-            return True
-        except Exception as exc:
-            self.logger.info(f"click_send 失败: {exc}")
-            return False
 
-    def verify_sent(self, expected_text: str) -> bool:
-        # 【极致提速】在如此高频的场景下，为了保证双线程队列不拥堵，
-        # 我们直接信任前面的闪电操作，不再二次耗时抓取屏幕验证文本是否残留。
-        return True
+            # 4. 【核心灵魂：ACK 动态回执锁】
+            # 我们告诉 uiautomator2：死死盯住那个里面装着我们刚才发的话的输入框。
+            # 最多盯 1.5 秒。只要它消失了（或者被清空了），说明 QQ音乐 已经成功把消息发出来了！
+            # 这一步的耗时完全取决于你手机当时的流畅度，可能是 0.05 秒，也可能是 0.8 秒。
+            ack_success = self.device(className="android.widget.EditText", text=text).wait_gone(timeout=1.5)
+
+            if ack_success:
+                # 回执拿到！立刻收尾！
+                self.recover_ui()
+                return True
+            else:
+                self.logger.warning(f"发送超时，未收到文本消失回执: {text}")
+                self.recover_ui()
+                return False
+
+        except Exception as exc:
+            self.logger.warning(f"send_message 异常: {exc}")
+            self.recover_ui()
+            return False
 
     def recover_ui(self) -> None:
         try:
             width, height = self.device.window_size()
             self.device.click(width * 0.5, height * 0.3)
+            # 收起键盘后极其短暂的缓冲，确保下一条盲点不会点歪
+            time.sleep(0.05)
         except Exception:
             return
-
-    def send_message(self, text: str) -> bool:
-        if not text:
-            return False
-        if self.dry_run:
-            if self.log_dry_run:
-                self.logger.info(f"[DRY_RUN] {text}")
-            return True
-            
-        if not self.focus_input():
-            self.recover_ui()
-            return False
-            
-        if not self.set_text(text):
-            self.recover_ui()
-            return False
-            
-        for _ in range(SENDER_RULES["verify_retry"]):
-            self.click_send()
-            # 由于 verify_sent 已经优化为直接返回 True，这里只会执行一次 click_send 并瞬间成功
-            if self.verify_sent(text):
-                self.recover_ui()
-                return True
-                
-        self.recover_ui()
-        return False

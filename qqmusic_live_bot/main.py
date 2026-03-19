@@ -42,35 +42,63 @@ class LiveBotApp:
         self.is_running = False
 
     def _sender_thread_worker(self, sender: MessageSender) -> None:
-        """[新增] 独立的发送线程：只负责从队列取词并模拟点击发送"""
+        """[新增] 独立的发送线程：基于 ACK 回执驱动的高并发消费者"""
         self.logger.info("后台发送线程已启动，待命完毕！")
         while self.is_running:
             try:
-                # 阻塞等待队列里的任务，超时时间1秒（防止线程卡死无法退出）
-                action, text = self.action_queue.get(timeout=1.0)
+                # 1. 从队列获取任务
+                # 这里做了一个兼容：如果你用的是普通 Queue，就是 action, text
+                # 如果你按我之前说的升了级，换成了 PriorityQueue，那就是 priority, enqueue_time, action, text
+                task = self.action_queue.get(timeout=1.0)
+
+                if len(task) == 4:
+                    priority, enqueue_time, action, text = task
+                    # 【VIP 队列专属：超时丢弃机制】
+                    # 如果是优先级最低的欢迎/聊天（priority >= 3），并且在队列里堵了超过 5 秒，直接扔掉！
+                    if priority >= 3 and (time.time() - enqueue_time > 5.0):
+                        self.logger.info(f"消息已过期积压，触发自动丢弃: {text}")
+                        self.action_queue.task_done()
+                        continue
+                else:
+                    action, text = task
+
             except queue.Empty:
                 continue
 
             try:
+                # 2. 【核心执行】调用带 ACK 回执锁的发送模块
+                # 注意：这里的 sender.send_message 现在是“智能阻塞”的。
+                # 它不依赖时间，而是眼睁睁看着输入框消失了，才会返回 True！
                 success = sender.send_message(text)
+
                 if success:
-                    # 发送成功，更新各种事后状态并写入记录
+                    # ==========================================
+                    # 下面这些是极其宝贵的业务状态更新，必须原封不动保留！
+                    # ==========================================
                     now_ts = time.time()
                     self.state.mark_sent(action.event_type, now_ts)
                     dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
                     self.state.sent_fingerprints[dedupe_key] = now_ts
-                    
+
                     if action.user:
                         self.memory.touch_user(action.user, action.event_type, action.raw or text)
+
                     self.logger.info(f"发送成功 [{action.reason}] -> {text}")
-                    # 发送完休息一下（不影响主线程抓取）
-                    time.sleep(float(self.config.limits["post_send_cooldown"]))
+
+                    # 🚀【极致提速的核心改动】
+                    # 以前这里有一个 time.sleep(post_send_cooldown)，我们现在【彻底把它删掉】！
+                    # 因为 Sender 那边的 ACK 回执确认只要一拿到，就意味着 UI 已经完全准备好接收下一条了。
+                    # 0 毫秒等待，光速放行！
+
                 else:
                     self.logger.info(f"发送失败 [{action.reason}] -> {text}")
-                    time.sleep(1.5)
+                    # 失败时给个极短的缓冲，防止在 UI 真出 Bug 卡死的时候，瞬间爆刷异常日志
+                    time.sleep(0.3)
+
             except Exception as e:
                 self.logger.info(f"发送动作异常: {e}")
-                time.sleep(1)
+                time.sleep(0.3)
+
             finally:
                 self.action_queue.task_done()
 
