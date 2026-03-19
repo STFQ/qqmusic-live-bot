@@ -22,19 +22,32 @@
 # }
 
 LIMITS = {
-    "main_loop_interval": 0.2,  # 【极致抓取】0.2秒看一次屏幕，比眨眼还快
-    "welcome_interval": 1.0,
-    "gift_thank_interval": 2.0,
-    "chat_reply_interval": 10.0,
-    "warmup_interval": 45.0,
+    # 1. 【眼睛看屏幕的速度】：保持 0.2 ~ 0.3 即可，太快会卡死模拟器
+    "main_loop_interval": 0.25,
 
-    "post_send_cooldown": 0.1,  # 【取消发送冷却】原来是1.0秒，现在只要打字发出去，0.1秒后立刻发下一条！
+    # 2. 【大脑塞任务的速度：彻底解除限流！】
+    # 把这些原来动辄 1.5、2.5 秒的间隔，全部改成 0.0！
+    # 意思是：只要看到有人进来、有人送礼，0毫秒犹豫，瞬间全部砸进队列里让 Sender 去排队发！
+    "welcome_interval": 0.0,
+    "gift_thank_interval": 0.0,
+    "chat_reply_interval": 0.0,
+
+    # 3. 【嘴巴的死板间隔：正式宣告作废】
+    # 因为我们在 main.py 里已经把 time.sleep(post_send_cooldown) 删掉了，全靠 ACK 回执。
+    # 这里改成 0.0 只是为了让配置表看起来名副其实。
+    "post_send_cooldown": 0.0,
+
+    # 4. 【唯一需要保留的防刷屏保护】
+    # 等待大哥连击的时间。如果你觉得 4.0 秒太久，可以改成 1.0 或 1.5。
+    # 意思是：看到礼物先憋 1.5 秒，1.5 秒后大哥没连击了，再瞬间扔进队列感谢。
+    "gift_merge_window": 0.5,
+
+    # ... 其他的参数保持你原来的不变即可
     "dedupe_ttl": 120.0,
     "collector_line_ttl": 8.0,
     "ocr_interval": 3.0,
     "ocr_trigger_line_count": 2.0,
-
-    "gift_merge_window": 0.5,  # 【取消礼物等待】看到礼物只等 0.5 秒，没连击就瞬间感谢！(副作用是如果他连点10下，机器人可能会感谢10次)
+    "warmup_interval": 45.0
 }
 
 TRIGGERS = {
