@@ -7,7 +7,7 @@ WELCOME_TEMPLATES = [
 ]
 
 GIFT_TEMPLATES = [
-    "感谢 @{user} {gift}",
+    "谢谢 @{user} {gift}",
 ]
 
 CHAT_REPLY_TEMPLATES = [
@@ -37,7 +37,7 @@ PK_ITEM_TEMPLATES = [
 ]
 
 PK_FINAL_TEMPLATES = [
-    "最后30秒，快上分",
+    "pk快结束了，快上分",
 ]
 
 

@@ -19,13 +19,13 @@
       ]
     },
     "Cavalier": {
-      "gift_count": 57,
+      "gift_count": 59,
       "chat_count": 0,
       "notes": [
-        "gift:Cavalier:爱心:3",
-        "gift:Cavalier:好运羽签:1776",
         "gift:Cavalier:许愿灯:12",
         "welcome:Cavalier",
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:饭团:650",
         "gift:Cavalier:爱心:1"
       ]
     },
@@ -105,11 +105,14 @@
       ]
     },
     "小煤球": {
-      "gift_count": 2,
+      "gift_count": 5,
       "chat_count": 0,
       "notes": [
         "gift:小煤球:爱心:1",
-        "gift:小煤球:打call:1"
+        "gift:小煤球:打call:1",
+        "gift:小煤球:爱心:1",
+        "gift:小煤球:爱心:1",
+        "gift:小煤球:爱心:1"
       ]
     },
     "噔噔蹬蹬": {
@@ -1009,10 +1012,13 @@
       ]
     },
     "你家鱼哥ya": {
-      "gift_count": 2,
+      "gift_count": 8,
       "chat_count": 0,
       "notes": [
         "gift:你家鱼哥ya:饭团:30",
+        "gift:你家鱼哥ya:爱心:1",
+        "gift:你家鱼哥ya:打call:1",
+        "gift:你家鱼哥ya:爱心:1",
         "gift:你家鱼哥ya:爱心:1"
       ]
     },
@@ -1058,6 +1064,88 @@
       "chat_count": 0,
       "notes": [
         "welcome:知予安"
+      ]
+    },
+    "一只豆包": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:一只豆包:饭团:48"
+      ]
+    },
+    "U.mi\"2•27•3.02\"": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:U.mi\"2•27•3.02\":饭团:56",
+        "gift:U.mi\"2•27•3.02\":许愿灯:1",
+        "gift:U.mi\"2•27•3.02\":爱心:1"
+      ]
+    },
+    "Q.ˣʸ": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "gift:Q.ˣʸ:饭团:20",
+        "gift:Q.ˣʸ:饭团:30",
+        "gift:Q.ˣʸ:魔力草:1",
+        "gift:Q.ˣʸ:魔力草:1"
+      ]
+    },
+    "忆存款尼亚ˣʸ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忆存款尼亚ˣʸ"
+      ]
+    },
+    "Kim": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Kim"
+      ]
+    },
+    "么子都不想": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:么子都不想"
+      ]
+    },
+    "‮❄️‭沈砚冰": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:‮❄️‭沈砚冰"
+      ]
+    },
+    "忆存款‮❄️‭沈砚冰": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忆存款‮❄️‭沈砚冰"
+      ]
+    },
+    "王宝钏": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:王宝钏"
+      ]
+    },
+    "逗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:逗"
+      ]
+    },
+    "忆存款一只豆包": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忆存款一只豆包"
       ]
     }
   },

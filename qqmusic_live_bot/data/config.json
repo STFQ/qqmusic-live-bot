@@ -18,17 +18,17 @@
     "enable_ocr_fallback": false
   },
   "limits": {
-    "main_loop_interval": 0.35,
-    "welcome_interval": 1.2,
-    "gift_thank_interval": 3.0,
-    "chat_reply_interval": 10.0,
+    "main_loop_interval": 0.25,
+    "welcome_interval": 0.0,
+    "gift_thank_interval": 0.0,
+    "chat_reply_interval": 0.0,
     "warmup_interval": 45.0,
-    "post_send_cooldown": 1.0,
+    "post_send_cooldown": 0.0,
     "dedupe_ttl": 120.0,
     "collector_line_ttl": 8.0,
     "ocr_interval": 3.0,
     "ocr_trigger_line_count": 2.0,
-    "gift_merge_window": 4.0
+    "gift_merge_window": 1.5
   },
   "logging": {
     "console_output": false,
