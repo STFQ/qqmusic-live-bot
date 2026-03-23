@@ -66,11 +66,11 @@ class MessageSender:
             self.recover_ui()
             return False
 
-    def recover_ui(self) -> None:
-        try:
-            width, height = self.device.window_size()
-            self.device.click(width * 0.5, height * 0.3)
-            # 收起键盘后极其短暂的缓冲，确保下一条盲点不会点歪
-            time.sleep(0.05)
-        except Exception:
-            return
+    # def recover_ui(self) -> None:
+    #     try:
+    #         width, height = self.device.window_size()
+    #         self.device.click(width * 0.5, height * 0.3)
+    #         # 收起键盘后极其短暂的缓冲，确保下一条盲点不会点歪
+    #         time.sleep(0.05)
+    #     except Exception:
+    #         return
