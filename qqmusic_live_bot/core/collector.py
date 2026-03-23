@@ -2,6 +2,7 @@
 
 import tempfile
 import time
+import difflib  # [新增] 引入核心比对算法库
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -57,28 +58,26 @@ class TextNode:
 
 @dataclass
 class CollectorState:
-    recent_lines: dict[str, float]
+    # [修改] 彻底删除 recent_lines (TTL缓存)，换成 last_screen_sequence
+    last_screen_sequence: list[str]
     last_ocr_at: float = 0.0
 
 
 class TextCollector:
     def __init__(
-        self,
-        line_ttl: float = 8.0,
-        ocr_interval: float = 3.0,
-        ocr_trigger_line_count: int = 2,
-        enable_ocr_fallback: bool = False,
+            self,
+            line_ttl: float = 8.0,  # 这里的参数保留是为了兼容外部调用，但内部已弃用
+            ocr_interval: float = 3.0,
+            ocr_trigger_line_count: int = 2,
+            enable_ocr_fallback: bool = False,
     ):
-        self.line_ttl = line_ttl
         self.ocr_interval = ocr_interval
         self.ocr_trigger_line_count = ocr_trigger_line_count
-        self.state = CollectorState(recent_lines={})
+        # [修改] 初始化全新的记忆状态
+        self.state = CollectorState(last_screen_sequence=[])
         self.ocr = OCRFallback(enabled=enable_ocr_fallback)
 
-    def _cleanup(self, now_ts: float) -> None:
-        self.state.recent_lines = {
-            key: ts for key, ts in self.state.recent_lines.items() if now_ts - ts < self.line_ttl
-        }
+    # [删除] 彻底移除了 _cleanup(self, now_ts) 函数，再也不需要去管过期时间了！
 
     def _device_window_size(self, device) -> tuple[int, int]:
         try:
@@ -171,14 +170,12 @@ class TextCollector:
 
     def _collect_textview_lines(self, device) -> list[str]:
         window_size = self._device_window_size(device)
-        
+
         try:
-            # 恢复使用一次性 Dump XML 的高效批量获取方式
             nodes = device.xpath("//android.widget.TextView").all()
         except Exception:
-            # 万一获取失败，返回空列表等待下一轮，不至于让程序崩溃
             return []
-            
+
         candidates: list[TextNode] = []
 
         for node in nodes:
@@ -197,34 +194,55 @@ class TextCollector:
             return []
         if now_ts - self.state.last_ocr_at < self.ocr_interval:
             return []
-        
+
         try:
-            # 直接获取内存中的 PIL Image 或 bytes，不落盘（具体取决于你的 device 库，如 uiautomator2）
-            image = device.screenshot() 
-            # 将 PIL Image 转换为 numpy 数组供 PaddleOCR 直接读取
+            image = device.screenshot()
             img_array = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-            
-            # ocr.scan 也需要相应修改，接收 numpy array 而不是路径
-            lines = self.ocr.scan_image(img_array) 
+            lines = self.ocr.scan_image(img_array)
             self.state.last_ocr_at = now_ts
             return lines
         except Exception:
             return []
 
+    # 🔪 [新增] 降维打击：提取全新弹幕的核心算法
+    def _extract_new_lines(self, current_sequence: list[str]) -> list[str]:
+        """使用滑动窗口序列比对，抛弃死板的 TTL"""
+        if not self.state.last_screen_sequence:
+            self.state.last_screen_sequence = current_sequence
+            return current_sequence
+
+        # 寻找与上一帧画面的差异
+        sm = difflib.SequenceMatcher(None, self.state.last_screen_sequence, current_sequence)
+        new_items = []
+
+        for tag, i1, i2, j1, j2 in sm.get_opcodes():
+            # 只有新增(insert)或替换(replace)的部分，才是刚滚出或者新刷出来的弹幕
+            if tag in ('insert', 'replace'):
+                new_items.extend(current_sequence[j1:j2])
+
+        # 更新记忆，为下一帧做准备
+        self.state.last_screen_sequence = current_sequence
+        return new_items
+
     def collect(self, device) -> Frame:
         now_ts = time.time()
-        self._cleanup(now_ts)
+
+        # 1. 抓取屏幕上的所有文字（按从上到下顺序排好）
         raw_lines = self._collect_textview_lines(device)
         if len(raw_lines) <= self.ocr_trigger_line_count:
             raw_lines.extend(self._collect_ocr_lines(device, now_ts))
 
-        frame_lines: list[str] = []
+        # 2. 帧内简单去重，保持物理顺序
+        current_frame_lines: list[str] = []
         seen: set[str] = set()
         for line in raw_lines:
             if line in seen:
                 continue
             seen.add(line)
-            frame_lines.append(line)
-            self.state.recent_lines[line] = now_ts
+            current_frame_lines.append(line)
 
-        return Frame(ts=now_ts, raw_lines=raw_lines, lines=frame_lines)
+        # 3. 🔪 核心介入：调用序列比对，过滤出真正的"新内容"
+        real_new_lines = self._extract_new_lines(current_frame_lines)
+
+        # 4. 只把真·新内容装进 Frame 往下传！大脑再也不会收到旧弹幕的骚扰了
+        return Frame(ts=now_ts, raw_lines=current_frame_lines, lines=real_new_lines)
