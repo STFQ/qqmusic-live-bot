@@ -24,6 +24,7 @@ class MessageSender:
             return False
 
     def send_message(self, text: str) -> bool:
+        text = (text or "").strip()
         if not text:
             return False
 
@@ -35,7 +36,6 @@ class MessageSender:
         try:
             # 1. 点击唤起输入法
             if not self.focus_input():
-                self.recover_ui()
                 return False
 
             # 2. 极速注入文本
@@ -52,25 +52,10 @@ class MessageSender:
             # 这一步的耗时完全取决于你手机当时的流畅度，可能是 0.05 秒，也可能是 0.8 秒。
             ack_success = self.device(className="android.widget.EditText", text=text).wait_gone(timeout=1.5)
 
-            if ack_success:
-                # 回执拿到！立刻收尾！
-                self.recover_ui()
-                return True
-            else:
-                self.logger.warning(f"发送超时，未收到文本消失回执: {text}")
-                self.recover_ui()
-                return False
+            if not ack_success:
+                self.logger.info(f"发送超时，未收到文本消失回执: {text}")
+            return bool(ack_success)
 
         except Exception as exc:
-            self.logger.warning(f"send_message 异常: {exc}")
-            self.recover_ui()
+            self.logger.info(f"send_message 异常: {exc}")
             return False
-
-    # def recover_ui(self) -> None:
-    #     try:
-    #         width, height = self.device.window_size()
-    #         self.device.click(width * 0.5, height * 0.3)
-    #         # 收起键盘后极其短暂的缓冲，确保下一条盲点不会点歪
-    #         time.sleep(0.05)
-    #     except Exception:
-    #         return

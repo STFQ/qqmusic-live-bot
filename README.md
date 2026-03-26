@@ -11,7 +11,6 @@
 当前默认关闭的功能：
 - 自动聊天回复
 - 暖场消息
-- OCR 回退
 
 ## 目录结构
 
@@ -51,12 +50,6 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.env\Scripts\Activate.ps1
 python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
-```
-
-如果你后面要开启 OCR 回退，再额外安装：
-
-```powershell
-pip install paddleocr
 ```
 
 ## 启动方式
@@ -103,6 +96,10 @@ python -m qqmusic_live_bot.main
 - `logging.console_output`: 是否把运行日志打印到控制台
 - `logging.pk_time`: 是否打印 PK 倒计时调试日志
 - `logging.dry_run`: 在 `dry_run=true` 时是否打印待发送内容
+- `limits.pk_remind_interval`: PK 提醒最小间隔
+- `limits.collector_y_tolerance`: 判定同文案是否为新弹幕的纵向容差
+- `limits.queue_maxsize` / `limits.low_priority_ttl`: 发送队列容量和低优先级消息过期时间
+- `limits.send_retry_limit`: 发送失败后的自动重试次数
 
 ## 当前默认行为
 
@@ -114,8 +111,7 @@ python -m qqmusic_live_bot.main
   "enable_gift_thanks": true,
   "enable_auto_reply": false,
   "enable_warmup": false,
-  "enable_pk_remind": true,
-  "enable_ocr_fallback": false
+  "enable_pk_remind": true
 }
 ```
 

@@ -1,15 +1,15 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from ..core.events import Event, EventType, ReplyAction
 from ..core.state import BotState
-from ..strategy.rules import LIMITS
 from ..strategy.templates import GIFT_TEMPLATES, pick
 
 
 class GiftFeature:
-    def __init__(self) -> None:
+    def __init__(self, limits: dict[str, float]) -> None:
         # [修改] 彻底干掉了 seen_gifts（防重指纹池），因为 collector 已经在物理层面帮我们去重了！
         # 现在只保留 pending，用来等待大哥的连击合并
+        self.limits = limits
         self.pending: dict[tuple[str, str], dict[str, object]] = {}
 
     def _cleanup(self, now_ts: float) -> None:
@@ -59,7 +59,7 @@ class GiftFeature:
         self._ingest(events, now_ts)
 
         # 频率控制：距离上次感谢必须大于设定的间隔
-        if now_ts - state.last_gift_time < LIMITS.get("gift_thank_interval", 0.0):
+        if now_ts - state.last_gift_time < self.limits.get("gift_thank_interval", 0.0):
             return None
 
         if not self.pending:
@@ -69,7 +69,7 @@ class GiftFeature:
         ready_items = []
         for key, payload in self.pending.items():
             wait_time = now_ts - float(payload["last_seen"])
-            if wait_time >= LIMITS.get("gift_merge_window", 1.0):
+            if wait_time >= self.limits.get("gift_merge_window", 1.0):
                 ready_items.append((key, payload))
 
         if not ready_items:

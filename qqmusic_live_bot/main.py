@@ -29,73 +29,114 @@ class LiveBotApp:
         self.blacklist = load_blacklist(self.root / "data" / "blacklist.json")
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
-            ocr_interval=float(self.config.limits["ocr_interval"]),
-            ocr_trigger_line_count=int(self.config.limits["ocr_trigger_line_count"]),
-            enable_ocr_fallback=bool(self.config.flags["enable_ocr_fallback"]),
+            y_tolerance=float(self.config.limits["collector_y_tolerance"]),
         )
         self.parser = EventParser()
-        self.scheduler = Scheduler(self.config.flags)
+        self.scheduler = Scheduler(self.config.flags, self.config.limits)
         self.state = BotState(mode=self.config.mode)
-        
-        # [新增] 消息队列：用于主抓取线程和发送线程之间传递要发送的弹幕
-        self.action_queue = queue.Queue()
+
+        # 消息队列：用于主抓取线程和发送线程之间传递要发送的弹幕
+        self.action_queue = queue.Queue(maxsize=int(self.config.limits["queue_maxsize"]))
         self.is_running = False
+        self._last_queue_warn_ts = 0.0
+
+    def _action_priority(self, event_type: str) -> int:
+        if event_type == "gift":
+            return 1
+        if event_type == "pk_timer":
+            return 2
+        if event_type == "welcome":
+            return 3
+        if event_type == "chat":
+            return 4
+        return 5
+
+    def _dedupe_key(self, action, text: str) -> str:
+        return action.raw or f"{action.event_type}:{action.user}:{text}"
+
+    def _log_queue_pressure(self, now_ts: float) -> None:
+        warn_size = int(self.config.limits["queue_warn_size"])
+        if self.action_queue.qsize() < warn_size:
+            return
+        if now_ts - self._last_queue_warn_ts < 5.0:
+            return
+        self._last_queue_warn_ts = now_ts
+        self.logger.info(f"发送队列积压告警: size={self.action_queue.qsize()} / {self.action_queue.maxsize}")
+
+    def _enqueue_action(self, action, text: str, now_ts: float, retry_count: int = 0) -> bool:
+        dedupe_key = self._dedupe_key(action, text)
+        if self.state.is_recently_handled(dedupe_key):
+            return False
+
+        priority = self._action_priority(action.event_type)
+        if self.action_queue.full() and priority >= 3:
+            self.logger.info(f"队列已满，丢弃低优先级消息 [{action.reason}] -> {text}")
+            return False
+
+        task = {
+            "priority": priority,
+            "enqueue_time": now_ts,
+            "action": action,
+            "text": text,
+            "dedupe_key": dedupe_key,
+            "retry_count": retry_count,
+        }
+        try:
+            self.action_queue.put_nowait(task)
+        except queue.Full:
+            self.logger.info(f"队列已满，入队失败 [{action.reason}] -> {text}")
+            return False
+
+        self.state.mark_queued(dedupe_key, now_ts)
+        self._log_queue_pressure(now_ts)
+        self.logger.info(
+            f"准备发送(加入队列) [{action.reason}] priority={priority} retry={retry_count} size={self.action_queue.qsize()} -> {text}"
+        )
+        return True
 
     def _sender_thread_worker(self, sender: MessageSender) -> None:
-        """[新增] 独立的发送线程：基于 ACK 回执驱动的高并发消费者"""
         self.logger.info("后台发送线程已启动，待命完毕！")
-        while self.is_running:
+        while self.is_running or not self.action_queue.empty():
             try:
-                # 1. 从队列获取任务
-                # 这里做了一个兼容：如果你用的是普通 Queue，就是 action, text
-                # 如果你按我之前说的升了级，换成了 PriorityQueue，那就是 priority, enqueue_time, action, text
                 task = self.action_queue.get(timeout=1.0)
-
-                if len(task) == 4:
-                    priority, enqueue_time, action, text = task
-                    # 【VIP 队列专属：超时丢弃机制】
-                    # 如果是优先级最低的欢迎/聊天（priority >= 3），并且在队列里堵了超过 5 秒，直接扔掉！
-                    if priority >= 3 and (time.time() - enqueue_time > 5.0):
-                        self.logger.info(f"消息已过期积压，触发自动丢弃: {text}")
-                        self.action_queue.task_done()
-                        continue
-                else:
-                    action, text = task
 
             except queue.Empty:
                 continue
 
+            action = task["action"]
+            text = task["text"]
+            priority = int(task["priority"])
+            enqueue_time = float(task["enqueue_time"])
+            dedupe_key = str(task["dedupe_key"])
+            retry_count = int(task["retry_count"])
+
             try:
-                # 2. 【核心执行】调用带 ACK 回执锁的发送模块
-                # 注意：这里的 sender.send_message 现在是“智能阻塞”的。
-                # 它不依赖时间，而是眼睁睁看着输入框消失了，才会返回 True！
+                if priority >= 3 and (time.time() - enqueue_time > float(self.config.limits["low_priority_ttl"])):
+                    self.logger.info(f"消息已过期积压，触发自动丢弃 [{action.reason}] -> {text}")
+                    self.state.unmark_queued(dedupe_key)
+                    continue
+
                 success = sender.send_message(text)
 
                 if success:
-                    # ==========================================
-                    # 下面这些是极其宝贵的业务状态更新，必须原封不动保留！
-                    # ==========================================
                     now_ts = time.time()
-                    self.state.mark_sent(action.event_type, now_ts)
-                    dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
-                    self.state.sent_fingerprints[dedupe_key] = now_ts
+                    self.state.mark_sent(action.event_type, now_ts, dedupe_key)
 
                     if action.user:
                         self.memory.touch_user(action.user, action.event_type, action.raw or text)
 
                     self.logger.info(f"发送成功 [{action.reason}] -> {text}")
-
-                    # 🚀【极致提速的核心改动】
-                    # 以前这里有一个 time.sleep(post_send_cooldown)，我们现在【彻底把它删掉】！
-                    # 因为 Sender 那边的 ACK 回执确认只要一拿到，就意味着 UI 已经完全准备好接收下一条了。
-                    # 0 毫秒等待，光速放行！
-
                 else:
-                    self.logger.info(f"发送失败 [{action.reason}] -> {text}")
-                    # 失败时给个极短的缓冲，防止在 UI 真出 Bug 卡死的时候，瞬间爆刷异常日志
+                    retry_limit = int(self.config.limits["send_retry_limit"])
+                    self.state.unmark_queued(dedupe_key)
+                    if retry_count < retry_limit and self._enqueue_action(action, text, time.time(), retry_count + 1):
+                        self.logger.info(f"发送失败，已重新入队 [{action.reason}] retry={retry_count + 1} -> {text}")
+                    else:
+                        self.logger.info(f"发送失败，已放弃 [{action.reason}] -> {text}")
                     time.sleep(0.3)
 
             except Exception as e:
+                self.state.unmark_queued(dedupe_key)
                 self.logger.info(f"发送动作异常: {e}")
                 time.sleep(0.3)
 
@@ -121,66 +162,68 @@ class LiveBotApp:
         sender_thread = threading.Thread(target=self._sender_thread_worker, args=(sender,), daemon=True)
         sender_thread.start()
 
-        while self.is_running:
-            try:
-                # 主线程全速抓取屏幕，绝不停歇
-                frame = self.collector.collect(device)
-                self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
-                frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
-                
-                if not frame.lines:
-                    time.sleep(float(self.config.limits["main_loop_interval"]))
-                    continue
+        try:
+            while self.is_running:
+                try:
+                    frame = self.collector.collect(device)
+                    self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
+                    frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
 
-                events = self.parser.parse(frame)
-                for event in events:
-                    if event.fingerprint in self.state.seen_event_fingerprints:
+                    if not frame.lines:
+                        time.sleep(float(self.config.limits["main_loop_interval"]))
                         continue
-                    self.state.seen_event_fingerprints[event.fingerprint] = frame.ts
-                    if event.type.value == "pk_timer" and self.config.logging["pk_time"]:
-                        self.logger.info(f"[PK_TIME] seconds={event.meta.get('seconds', event.content)} raw={event.raw}")
-                    self.logger.event(
-                        {
-                            "ts": frame.ts,
-                            "type": event.type.value,
-                            "user": event.user,
-                            "content": event.content,
-                            "count": event.count,
-                            "raw": event.raw,
-                        }
-                    )
 
-                action = self.scheduler.next_action(frame, events, self.state)
-                if not action:
-                    time.sleep(float(self.config.limits["main_loop_interval"]))
-                    continue
+                    events = self.parser.parse(frame)
+                    fresh_events = []
+                    latest_pk_event = None
+                    for event in events:
+                        if event.type.value == "pk_timer":
+                            latest_pk_event = event
+                        if event.fingerprint in self.state.seen_event_fingerprints:
+                            continue
+                        self.state.seen_event_fingerprints[event.fingerprint] = frame.ts
+                        fresh_events.append(event)
+                        if event.type.value == "pk_timer" and self.config.logging["pk_time"]:
+                            self.logger.info(f"[PK_TIME] seconds={event.meta.get('seconds', event.content)} raw={event.raw}")
+                        self.logger.event(
+                            {
+                                "ts": frame.ts,
+                                "type": event.type.value,
+                                "user": event.user,
+                                "content": event.content,
+                                "count": event.count,
+                                "raw": event.raw,
+                            }
+                        )
 
-                max_reply_len = int(self.config.profile["max_reply_len"])
-                if action.event_type == "gift":
-                    text = trim_gift_reply(action.user, str(action.meta.get("gift", "")), max_reply_len)
-                else:
-                    text = trim_reply(action.text, max_reply_len)
+                    scheduler_events = list(fresh_events)
+                    if latest_pk_event and all(event.type.value != "pk_timer" for event in scheduler_events):
+                        scheduler_events.append(latest_pk_event)
 
-                # [核心逻辑] 不再直接调用发送，而是推入队列
-                self.logger.info(f"准备发送(加入队列) [{action.reason}] -> {text}")
-                
-                # 乐观预先标记（假装已经发了）：防止由于队列拥挤、发送线程还没发出去期间，
-                # 主线程又抓到了同样的事件，导致重复加入队列
-                now_ts = time.time()
-                self.state.mark_sent(action.event_type, now_ts)
-                dedupe_key = action.raw or f"{action.event_type}:{action.user}:{text}"
-                self.state.sent_fingerprints[dedupe_key] = now_ts
-                
-                # 推入队列，主循环立刻进行下一次抓取
-                self.action_queue.put((action, text))
+                    action = self.scheduler.next_action(frame, scheduler_events, self.state)
+                    if not action:
+                        time.sleep(float(self.config.limits["main_loop_interval"]))
+                        continue
 
-            except KeyboardInterrupt:
-                self.logger.info("已手动停止，正在关闭...")
-                self.is_running = False
-                break
-            except Exception as exc:
-                self.logger.info(f"主循环异常: {exc}")
-                time.sleep(2)
+                    max_reply_len = int(self.config.profile["max_reply_len"])
+                    if action.event_type == "gift":
+                        text = trim_gift_reply(action.user, str(action.meta.get("gift", "")), max_reply_len)
+                    else:
+                        text = trim_reply(action.text, max_reply_len)
+
+                    self._enqueue_action(action, text, time.time())
+
+                except KeyboardInterrupt:
+                    self.logger.info("已手动停止，正在关闭...")
+                    self.is_running = False
+                    break
+                except Exception as exc:
+                    self.logger.info(f"主循环异常: {exc}")
+                    time.sleep(2)
+        finally:
+            self.is_running = False
+            sender_thread.join(timeout=3.0)
+            self.memory.flush()
 
 
 def main() -> None:

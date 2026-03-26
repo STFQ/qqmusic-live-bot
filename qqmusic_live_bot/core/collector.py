@@ -1,17 +1,10 @@
 ﻿from __future__ import annotations
 
-import tempfile
 import time
-import difflib  # [新增] 引入核心比对算法库
 from dataclasses import dataclass
-from pathlib import Path
 
 from .events import Frame
-from .ocr import OCRFallback
 from ..strategy.filters import normalize_text
-
-import cv2
-import numpy as np
 
 CHROME_NOISE_TEXTS = {
     "ATX",
@@ -55,29 +48,33 @@ class TextNode:
     text: str
     bounds: tuple[int, int, int, int]
 
+    @property
+    def center_x(self) -> float:
+        return (self.bounds[0] + self.bounds[2]) / 2
+
+    @property
+    def center_y(self) -> float:
+        return (self.bounds[1] + self.bounds[3]) / 2
+
 
 @dataclass
 class CollectorState:
-    # [修改] 彻底删除 recent_lines (TTL缓存)，换成 last_screen_sequence
-    last_screen_sequence: list[str]
-    last_ocr_at: float = 0.0
+    recent_items: dict[str, list[dict[str, float]]]
 
 
 class TextCollector:
-    def __init__(
-            self,
-            line_ttl: float = 8.0,  # 这里的参数保留是为了兼容外部调用，但内部已弃用
-            ocr_interval: float = 3.0,
-            ocr_trigger_line_count: int = 2,
-            enable_ocr_fallback: bool = False,
-    ):
-        self.ocr_interval = ocr_interval
-        self.ocr_trigger_line_count = ocr_trigger_line_count
-        # [修改] 初始化全新的记忆状态
-        self.state = CollectorState(last_screen_sequence=[])
-        self.ocr = OCRFallback(enabled=enable_ocr_fallback)
+    def __init__(self, line_ttl: float = 12.0, y_tolerance: float = 20.0):
+        self.line_ttl = line_ttl
+        self.y_tolerance = y_tolerance
+        self.state = CollectorState(recent_items={})
 
-    # [删除] 彻底移除了 _cleanup(self, now_ts) 函数，再也不需要去管过期时间了！
+    def _cleanup(self, now_ts: float) -> None:
+        cleaned: dict[str, list[dict[str, float]]] = {}
+        for text, records in self.state.recent_items.items():
+            alive = [record for record in records if now_ts - record["ts"] < self.line_ttl]
+            if alive:
+                cleaned[text] = alive
+        self.state.recent_items = cleaned
 
     def _device_window_size(self, device) -> tuple[int, int]:
         try:
@@ -110,65 +107,7 @@ class TextCollector:
         in_message_band = height * 0.22 <= center_y <= height * 0.80 and center_x <= width * 0.78
         return in_pk_band or in_message_band
 
-    def _merge_row_nodes(self, nodes: list[TextNode]) -> list[str]:
-        if not nodes:
-            return []
-
-        ordered_nodes = sorted(nodes, key=lambda item: ((item.bounds[1] + item.bounds[3]) / 2, item.bounds[0]))
-        row_tolerance = 24
-        rows: list[list[TextNode]] = []
-
-        for node in ordered_nodes:
-            center_y = (node.bounds[1] + node.bounds[3]) / 2
-            if not rows:
-                rows.append([node])
-                continue
-
-            last_row = rows[-1]
-            last_center_y = (last_row[-1].bounds[1] + last_row[-1].bounds[3]) / 2
-            if abs(center_y - last_center_y) <= row_tolerance:
-                last_row.append(node)
-            else:
-                rows.append([node])
-
-        lines: list[str] = []
-        group_gap = 80
-        for row in rows:
-            row = sorted(row, key=lambda item: item.bounds[0])
-            texts = [item.text for item in row if item.text and not self._is_noise_text(item.text)]
-            if not texts:
-                continue
-            lines.extend(texts)
-
-            groups: list[list[TextNode]] = []
-            for item in row:
-                if not item.text or self._is_noise_text(item.text):
-                    continue
-                if not groups:
-                    groups.append([item])
-                    continue
-                last_item = groups[-1][-1]
-                gap = item.bounds[0] - last_item.bounds[2]
-                if gap <= group_gap:
-                    groups[-1].append(item)
-                else:
-                    groups.append([item])
-
-            for group in groups:
-                if len(group) <= 1:
-                    continue
-                group_texts = [item.text for item in group if item.text and not self._is_noise_text(item.text)]
-                if len(group_texts) <= 1:
-                    continue
-                joined = " ".join(group_texts)
-                compact = "".join(group_texts)
-                if not self._is_noise_text(joined):
-                    lines.append(joined)
-                if compact != joined and not self._is_noise_text(compact):
-                    lines.append(compact)
-        return [line for line in lines if line]
-
-    def _collect_textview_lines(self, device) -> list[str]:
+    def _collect_textview_nodes(self, device) -> list[TextNode]:
         window_size = self._device_window_size(device)
 
         try:
@@ -187,62 +126,31 @@ class TextCollector:
                 continue
             candidates.append(TextNode(text=text, bounds=bounds))
 
-        return self._merge_row_nodes(candidates)
+        return sorted(candidates, key=lambda item: (item.center_y, item.center_x))
 
-    def _collect_ocr_lines(self, device, now_ts: float) -> list[str]:
-        if not self.ocr.available():
-            return []
-        if now_ts - self.state.last_ocr_at < self.ocr_interval:
-            return []
+    def _extract_new_lines_by_spatial(self, current_nodes: list[TextNode], now_ts: float) -> list[str]:
+        new_lines: list[str] = []
 
-        try:
-            image = device.screenshot()
-            img_array = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-            lines = self.ocr.scan_image(img_array)
-            self.state.last_ocr_at = now_ts
-            return lines
-        except Exception:
-            return []
+        for node in current_nodes:
+            text = node.text
+            current_y = node.center_y
+            history = self.state.recent_items.get(text, [])
 
-    # 🔪 [新增] 降维打击：提取全新弹幕的核心算法
-    def _extract_new_lines(self, current_sequence: list[str]) -> list[str]:
-        """使用滑动窗口序列比对，抛弃死板的 TTL"""
-        if not self.state.last_screen_sequence:
-            self.state.last_screen_sequence = current_sequence
-            return current_sequence
+            appears_lower = bool(history) and current_y > max(record["y"] for record in history) + self.y_tolerance
 
-        # 寻找与上一帧画面的差异
-        sm = difflib.SequenceMatcher(None, self.state.last_screen_sequence, current_sequence)
-        new_items = []
+            if not history or appears_lower:
+                new_lines.append(text)
 
-        for tag, i1, i2, j1, j2 in sm.get_opcodes():
-            # 只有新增(insert)或替换(replace)的部分，才是刚滚出或者新刷出来的弹幕
-            if tag in ('insert', 'replace'):
-                new_items.extend(current_sequence[j1:j2])
+            updated_history = history + [{"y": current_y, "ts": now_ts}]
+            self.state.recent_items[text] = updated_history[-20:]
 
-        # 更新记忆，为下一帧做准备
-        self.state.last_screen_sequence = current_sequence
-        return new_items
+        return new_lines
 
     def collect(self, device) -> Frame:
         now_ts = time.time()
+        self._cleanup(now_ts)
 
-        # 1. 抓取屏幕上的所有文字（按从上到下顺序排好）
-        raw_lines = self._collect_textview_lines(device)
-        if len(raw_lines) <= self.ocr_trigger_line_count:
-            raw_lines.extend(self._collect_ocr_lines(device, now_ts))
-
-        # 2. 帧内简单去重，保持物理顺序
-        current_frame_lines: list[str] = []
-        seen: set[str] = set()
-        for line in raw_lines:
-            if line in seen:
-                continue
-            seen.add(line)
-            current_frame_lines.append(line)
-
-        # 3. 🔪 核心介入：调用序列比对，过滤出真正的"新内容"
-        real_new_lines = self._extract_new_lines(current_frame_lines)
-
-        # 4. 只把真·新内容装进 Frame 往下传！大脑再也不会收到旧弹幕的骚扰了
-        return Frame(ts=now_ts, raw_lines=current_frame_lines, lines=real_new_lines)
+        current_nodes = self._collect_textview_nodes(device)
+        raw_lines = [node.text for node in current_nodes]
+        real_new_lines = self._extract_new_lines_by_spatial(current_nodes, now_ts)
+        return Frame(ts=now_ts, raw_lines=raw_lines, lines=real_new_lines)
