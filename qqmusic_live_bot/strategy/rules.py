@@ -1,10 +1,9 @@
-﻿FEATURE_FLAGS = {
+FEATURE_FLAGS = {
     "enable_welcome": True,
     "enable_gift_thanks": True,
     "enable_auto_reply": False,
     "enable_warmup": False,
     "enable_pk_remind": True,
-    "enable_ocr_fallback": False,
 }
 
 # LIMITS = {
@@ -45,9 +44,13 @@ LIMITS = {
     # ... 其他的参数保持你原来的不变即可
     "dedupe_ttl": 120.0,
     "collector_line_ttl": 8.0,
-    "ocr_interval": 3.0,
-    "ocr_trigger_line_count": 2.0,
-    "warmup_interval": 45.0
+    "collector_y_tolerance": 20.0,
+    "warmup_interval": 45.0,
+    "pk_remind_interval": 0.0,
+    "queue_maxsize": 200.0,
+    "queue_warn_size": 50.0,
+    "low_priority_ttl": 5.0,
+    "send_retry_limit": 1.0,
 }
 
 TRIGGERS = {

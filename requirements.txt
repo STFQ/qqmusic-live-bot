@@ -1,5 +1,2 @@
-﻿uiautomator2==3.5.0
+uiautomator2==3.5.0
 opencv-python>=4.7.0
-
-# Optional: only needed when enable_ocr_fallback=true
-# paddleocr==2.10.0

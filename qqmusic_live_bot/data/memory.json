@@ -19,13 +19,13 @@
       ]
     },
     "Cavalier": {
-      "gift_count": 59,
+      "gift_count": 120,
       "chat_count": 0,
       "notes": [
-        "gift:Cavalier:许愿灯:12",
-        "welcome:Cavalier",
+        "gift:Cavalier:爱心:3",
         "gift:Cavalier:爱心:1",
-        "gift:Cavalier:饭团:650",
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:爱心:1",
         "gift:Cavalier:爱心:1"
       ]
     },
@@ -105,22 +105,24 @@
       ]
     },
     "小煤球": {
-      "gift_count": 5,
+      "gift_count": 8,
       "chat_count": 0,
       "notes": [
         "gift:小煤球:爱心:1",
+        "gift:小煤球:打call:2",
+        "welcome:小煤球",
         "gift:小煤球:打call:1",
-        "gift:小煤球:爱心:1",
-        "gift:小煤球:爱心:1",
         "gift:小煤球:爱心:1"
       ]
     },
     "噔噔蹬蹬": {
-      "gift_count": 3,
+      "gift_count": 9,
       "chat_count": 0,
       "notes": [
-        "gift:噔噔蹬蹬:爱心:1",
-        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:饭团:55",
+        "gift:噔噔蹬蹬:打call:1",
+        "gift:噔噔蹬蹬:饭团:40",
+        "gift:噔噔蹬蹬:打call:1",
         "gift:噔噔蹬蹬:打call:1"
       ]
     },
@@ -428,6 +430,7 @@
       "notes": [
         "welcome:Buddy丶承龙",
         "welcome:Buddy丶承龙",
+        "welcome:Buddy丶承龙",
         "welcome:Buddy丶承龙"
       ]
     },
@@ -453,6 +456,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:鲸鱼丿贪吃",
         "welcome:鲸鱼丿贪吃",
         "welcome:鲸鱼丿贪吃",
         "welcome:鲸鱼丿贪吃",
@@ -533,6 +537,7 @@
       "chat_count": 0,
       "notes": [
         "welcome:乌云函",
+        "welcome:乌云函",
         "welcome:乌云函"
       ]
     },
@@ -586,6 +591,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:野狼",
         "welcome:野狼"
       ]
     },
@@ -745,12 +751,13 @@
       ]
     },
     "紫气、": {
-      "gift_count": 3,
+      "gift_count": 4,
       "chat_count": 0,
       "notes": [
         "gift:紫气、:星愿信笺:3776",
         "gift:紫气、:玫瑰星砂:9999",
-        "gift:紫气、:许愿灯:10"
+        "gift:紫气、:许愿灯:10",
+        "gift:紫气、:嫦娥玉兔:1"
       ]
     },
     "听不懂你在说什么": {
@@ -771,6 +778,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:我对分没兴趣",
         "welcome:我对分没兴趣",
         "welcome:我对分没兴趣",
         "welcome:我对分没兴趣",
@@ -923,7 +931,8 @@
       "chat_count": 0,
       "notes": [
         "welcome:漫愿",
-        "gift:漫愿:爱心:1"
+        "gift:漫愿:爱心:1",
+        "welcome:漫愿"
       ]
     },
     "Aone乌冬": {
@@ -1008,6 +1017,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:今晚嘉了个嘉晚饭",
         "welcome:今晚嘉了个嘉晚饭"
       ]
     },
@@ -1047,13 +1057,13 @@
       ]
     },
     "你家鱼哥ya": {
-      "gift_count": 8,
+      "gift_count": 11,
       "chat_count": 0,
       "notes": [
-        "gift:你家鱼哥ya:饭团:30",
         "gift:你家鱼哥ya:爱心:1",
-        "gift:你家鱼哥ya:打call:1",
         "gift:你家鱼哥ya:爱心:1",
+        "gift:你家鱼哥ya:挚爱玫瑰:10",
+        "gift:你家鱼哥ya:打call:2",
         "gift:你家鱼哥ya:爱心:1"
       ]
     },
@@ -1118,13 +1128,14 @@
       ]
     },
     "Q.ˣʸ": {
-      "gift_count": 4,
+      "gift_count": 5,
       "chat_count": 0,
       "notes": [
-        "gift:Q.ˣʸ:饭团:20",
         "gift:Q.ˣʸ:饭团:30",
         "gift:Q.ˣʸ:魔力草:1",
-        "gift:Q.ˣʸ:魔力草:1"
+        "gift:Q.ˣʸ:魔力草:1",
+        "welcome:Q.ˣʸ",
+        "gift:Q.ˣʸ:爱心:1"
       ]
     },
     "忆存款尼亚ˣʸ": {
@@ -1295,6 +1306,7 @@
       "notes": [
         "welcome:蛆劈",
         "welcome:蛆劈",
+        "welcome:蛆劈",
         "welcome:蛆劈"
       ]
     },
@@ -1419,6 +1431,9 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:就是爱音乐",
+        "welcome:就是爱音乐",
+        "welcome:就是爱音乐",
         "welcome:就是爱音乐"
       ]
     },
@@ -1562,6 +1577,1267 @@
       "chat_count": 0,
       "notes": [
         "welcome:黄敬胡"
+      ]
+    },
+    "Levi": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Levi"
+      ]
+    },
+    "尘埃": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:尘埃"
+      ]
+    },
+    "Jinnnnn": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Jinnnnn"
+      ]
+    },
+    "迟遇": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:迟遇"
+      ]
+    },
+    "晚棠": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:晚棠"
+      ]
+    },
+    "红梅": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:红梅"
+      ]
+    },
+    "未闻奇楠": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:未闻奇楠"
+      ]
+    },
+    "纸短情长✨、": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:纸短情长✨、"
+      ]
+    },
+    "平安": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "gift:平安:爱心:1",
+        "gift:平安:爱心:1",
+        "gift:平安:爱心:1",
+        "gift:平安:爱心:1"
+      ]
+    },
+    "可爱的小小陈": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:可爱的小小陈"
+      ]
+    },
+    "徐有明": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:徐有明"
+      ]
+    },
+    "问问....": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:问问...."
+      ]
+    },
+    "宝宝......": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:宝宝......"
+      ]
+    },
+    "猫描‮..‭": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:猫描‮..‭:饭团:50"
+      ]
+    },
+    "尼亚ˣʸ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:尼亚ˣʸ"
+      ]
+    },
+    "-Cindy_77": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:-Cindy_77"
+      ]
+    },
+    "早点睡晚安": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:早点睡晚安"
+      ]
+    },
+    "Rl-三金": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Rl-三金"
+      ]
+    },
+    "久伴不走_..": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:久伴不走_..:刷我滴卡:1",
+        "welcome:久伴不走_.."
+      ]
+    },
+    "Eiko": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Eiko"
+      ]
+    },
+    "迟暮": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:迟暮"
+      ]
+    },
+    "黄元超": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:黄元超"
+      ]
+    },
+    "想欣时风起": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:想欣时风起"
+      ]
+    },
+    "阿华哥~旅行家。": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:阿华哥~旅行家。:爱心:1"
+      ]
+    },
+    "江山": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:江山"
+      ]
+    },
+    "✨天天₄₁": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:✨天天₄₁:饭团:66"
+      ]
+    },
+    "漂亮大番薯": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:漂亮大番薯:饭团:30"
+      ]
+    },
+    "越缘": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:越缘"
+      ]
+    },
+    "意ღ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:意ღ"
+      ]
+    },
+    "天选干饭人": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:天选干饭人:一起浪:1",
+        "gift:天选干饭人:鹤唳群山:4"
+      ]
+    },
+    "土豆泥": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:土豆泥:琉璃花信:1",
+        "gift:土豆泥:饭团:376",
+        "gift:土豆泥:爱心星云:1"
+      ]
+    },
+    "奶娃": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:奶娃"
+      ]
+    },
+    "暖宝": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:暖宝"
+      ]
+    },
+    "孑然๑..": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:孑然๑..:刷我滴卡:15",
+        "gift:孑然๑..:饭团:888"
+      ]
+    },
+    "﹏隨風肆意飄ザ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:﹏隨風肆意飄ザ"
+      ]
+    },
+    "小巴小 ້໌ᮨ": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小巴小 ້໌ᮨ",
+        "gift:小巴小 ້໌ᮨ:饭团:30",
+        "gift:小巴小 ້໌ᮨ:气球花花:1",
+        "gift:小巴小 ້໌ᮨ:琉璃花信:1",
+        "gift:小巴小 ້໌ᮨ:饭团:30"
+      ]
+    },
+    "家和万事兴": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:家和万事兴"
+      ]
+    },
+    "私の风宝₄₁": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:私の风宝₄₁:饭团:18"
+      ]
+    },
+    "小团子": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小团子"
+      ]
+    },
+    "且行且珍惜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:且行且珍惜"
+      ]
+    },
+    "海纳百川": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:海纳百川"
+      ]
+    },
+    "dgbclby": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:dgbclby"
+      ]
+    },
+    "一切都好": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:一切都好"
+      ]
+    },
+    "ꦻ꯭ᩚ予我..⃟心碎ꦿᩚঞ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:ꦻ꯭ᩚ予我..⃟心碎ꦿᩚঞ"
+      ]
+    },
+    "酒酿草莓圆子": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:酒酿草莓圆子"
+      ]
+    },
+    "卖火柴的精神小伙": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:卖火柴的精神小伙"
+      ]
+    },
+    "布丁..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:布丁.."
+      ]
+    },
+    "大飞哥": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:大飞哥"
+      ]
+    },
+    "是初恋是心动是你": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:是初恋是心动是你"
+      ]
+    },
+    "边界感.": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:边界感."
+      ]
+    },
+    "皮皮皮竹‧₊˚ ☾. ⋅ °": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:皮皮皮竹‧₊˚ ☾. ⋅ °"
+      ]
+    },
+    "蓝色蝴蝶恋人": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:蓝色蝴蝶恋人"
+      ]
+    },
+    "还是小陈": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:还是小陈"
+      ]
+    },
+    "杰崽": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:杰崽"
+      ]
+    },
+    "一天": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:一天"
+      ]
+    },
+    "美得睡不着": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:美得睡不着"
+      ]
+    },
+    "嗯": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:嗯"
+      ]
+    },
+    "二叔.": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:二叔."
+      ]
+    },
+    "捏大九": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:捏大九"
+      ]
+    },
+    "开心果": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:开心果"
+      ]
+    },
+    "MSC": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:MSC"
+      ]
+    },
+    "爱要有你才完美..": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:爱要有你才完美..:饭团:66"
+      ]
+    },
+    "there..": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "welcome:there..",
+        "gift:there..:祈福木麒麟:1",
+        "gift:there..:魔力草:200"
+      ]
+    },
+    "jun jun": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:jun jun"
+      ]
+    },
+    "雾屿拾光人... ‮～喵 ‮‭": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:雾屿拾光人... ‮～喵 ‮‭"
+      ]
+    },
+    "小张": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小张"
+      ]
+    },
+    "飞燕": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:飞燕"
+      ]
+    },
+    "^_^峰徊路转、飛": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:^_^峰徊路转、飛"
+      ]
+    },
+    "野猪..猩猩..黄鼠狼..蛤蟆拳..！": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:野猪..猩猩..黄鼠狼..蛤蟆拳..！"
+      ]
+    },
+    "Hiki": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Hiki"
+      ]
+    },
+    "暮辞": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:暮辞:琉璃花信:10"
+      ]
+    },
+    "卖火柴的精神小伙得不到火柴女孩": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:卖火柴的精神小伙得不到火柴女孩"
+      ]
+    },
+    "FENGUP": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:FENGUP"
+      ]
+    },
+    "A王": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:A王"
+      ]
+    },
+    "+壹": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:+壹"
+      ]
+    },
+    "小倔脾气": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小倔脾气"
+      ]
+    },
+    "社会龙哥": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:社会龙哥"
+      ]
+    },
+    "浙咖芝茗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:浙咖芝茗"
+      ]
+    },
+    "鹿葭..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:鹿葭.."
+      ]
+    },
+    "..捏捏啊~": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..捏捏啊~"
+      ]
+    },
+    "✨ 矫情": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:✨ 矫情"
+      ]
+    },
+    "好很好非常好": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:好很好非常好"
+      ]
+    },
+    "咔咔": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:咔咔"
+      ]
+    },
+    "人类是地球的白细胞！": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:人类是地球的白细胞！"
+      ]
+    },
+    "桃..爱吃糖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:桃..爱吃糖"
+      ]
+    },
+    "太阳花": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:太阳花"
+      ]
+    },
+    "x i a o﹉m e i": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:x i a o﹉m e i"
+      ]
+    },
+    "Warden": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Warden"
+      ]
+    },
+    "小鱼": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小鱼"
+      ]
+    },
+    "霓霓": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:霓霓"
+      ]
+    },
+    "有点天真": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:有点天真"
+      ]
+    },
+    "L社恐的妹子..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:L社恐的妹子.."
+      ]
+    },
+    "田超": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:田超"
+      ]
+    },
+    "今晚有行动": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:今晚有行动"
+      ]
+    },
+    "微微": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:微微"
+      ]
+    },
+    "( ′• o •′ )": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:( ′• o •′ )"
+      ]
+    },
+    "SwEeET丶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:SwEeET丶"
+      ]
+    },
+    "Fok.": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Fok."
+      ]
+    },
+    "町一": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:町一"
+      ]
+    },
+    "月色": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:月色"
+      ]
+    },
+    "橙橙橙 ‮..‭": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:橙橙橙 ‮..‭"
+      ]
+    },
+    "A0_廖文_Jesse_@": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:A0_廖文_Jesse_@"
+      ]
+    },
+    "小李子": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小李子"
+      ]
+    },
+    "zlw大碗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:zlw大碗"
+      ]
+    },
+    "yh": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:yh"
+      ]
+    },
+    "洛琪希": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:洛琪希"
+      ]
+    },
+    "西瓜大王..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:西瓜大王.."
+      ]
+    },
+    "R": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:R"
+      ]
+    },
+    "苹果": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:苹果"
+      ]
+    },
+    "KaedeWen": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:KaedeWen"
+      ]
+    },
+    "跳一跳": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:跳一跳"
+      ]
+    },
+    "Gu~f": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Gu~f"
+      ]
+    },
+    "北..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:北.."
+      ]
+    },
+    "白羊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:白羊"
+      ]
+    },
+    "..小丸纸 *ﾟ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..小丸纸 *ﾟ"
+      ]
+    },
+    "珺儿..": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:珺儿.."
+      ]
+    },
+    "荟竹": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:荟竹"
+      ]
+    },
+    "爱吃桃": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:爱吃桃"
+      ]
+    },
+    "乐乐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:乐乐"
+      ]
+    },
+    "Stars": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Stars"
+      ]
+    },
+    "灰太狼": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:灰太狼"
+      ]
+    },
+    "兰溪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:兰溪"
+      ]
+    },
+    "A梦想城古戈尔彩票": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:A梦想城古戈尔彩票"
+      ]
+    },
+    "小鱼儿苏苏喂": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小鱼儿苏苏喂"
+      ]
+    },
+    "许扶墙": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:许扶墙"
+      ]
+    },
+    "耳机溢出了音乐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:耳机溢出了音乐"
+      ]
+    },
+    "糖果果": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:糖果果"
+      ]
+    },
+    "Mr-li": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Mr-li"
+      ]
+    },
+    "Arale": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Arale"
+      ]
+    },
+    "c": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:c"
+      ]
+    },
+    "肖志英": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:肖志英"
+      ]
+    },
+    "there": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:there"
+      ]
+    },
+    "Kay.Zhang": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Kay.Zhang"
+      ]
+    },
+    "、 亦久亦旧 '": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:、 亦久亦旧 '"
+      ]
+    },
+    "冷冰冰的誓言（ ？）": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:冷冰冰的誓言（ ？）"
+      ]
+    },
+    "沉甸甸的路..甲": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:沉甸甸的路..甲"
+      ]
+    },
+    "追风的少年": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:追风的少年"
+      ]
+    },
+    "(￣o￣) . z Z": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:(￣o￣) . z Z"
+      ]
+    },
+    "哴厊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:哴厊"
+      ]
+    },
+    "白衣少年": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:白衣少年"
+      ]
+    },
+    "_NANY": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:_NANY"
+      ]
+    },
+    "ZZY": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:ZZY"
+      ]
+    },
+    "Aiur": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Aiur"
+      ]
+    },
+    "一路向北": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:一路向北"
+      ]
+    },
+    "周翔": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:周翔"
+      ]
+    },
+    "丁香园": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:丁香园"
+      ]
+    },
+    "晚窗晤雪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:晚窗晤雪"
+      ]
+    },
+    "狗见都摇头": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:狗见都摇头"
+      ]
+    },
+    "Beef man﹎メ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Beef man﹎メ"
+      ]
+    },
+    "八百就八百": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:八百就八百"
+      ]
+    },
+    "余生": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:余生"
+      ]
+    },
+    "折纸要多多见面✨": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:折纸要多多见面✨"
+      ]
+    },
+    "/•᷅•᷄\\୭没头脑": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:/•᷅•᷄\\୭没头脑"
+      ]
+    },
+    "夜玺": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:夜玺"
+      ]
+    },
+    "永恒": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:永恒"
+      ]
+    },
+    "余溺": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:余溺"
+      ]
+    },
+    "好好 ²": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:好好 ²",
+        "gift:好好 ²:风铃祝福:1000",
+        "welcome:好好 ²"
+      ]
+    },
+    "Forest": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Forest"
+      ]
+    },
+    "tea部落": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:tea部落"
+      ]
+    },
+    "可惜天亮了": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:可惜天亮了"
+      ]
+    },
+    "我不耳背也不眼瞎谢谢": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我不耳背也不眼瞎谢谢"
+      ]
+    },
+    "醉": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:醉",
+        "gift:醉:为你写信:1",
+        "welcome:醉"
+      ]
+    },
+    "泽❤️落": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "welcome:泽❤️落",
+        "gift:泽❤️落:饭团:20",
+        "gift:泽❤️落:故事的小黄花:1",
+        "gift:泽❤️落:小星星:1",
+        "gift:泽❤️落:音乐精灵:1"
+      ]
+    },
+    "颜旭颜旭": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:颜旭颜旭"
+      ]
+    },
+    "时卿": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:时卿"
+      ]
+    },
+    "随风飘扬": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:随风飘扬"
+      ]
+    },
+    "摩羯星": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:摩羯星"
+      ]
+    },
+    "Richard": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Richard"
+      ]
+    },
+    "墨尘": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:墨尘"
+      ]
+    },
+    "..茉妍my": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..茉妍my"
+      ]
+    },
+    ".芥川北斋": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:.芥川北斋"
+      ]
+    },
+    "九月": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:九月"
+      ]
+    },
+    "灼诗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:灼诗"
+      ]
+    },
+    "uu": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:uu"
+      ]
+    },
+    "许多金": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:许多金"
+      ]
+    },
+    "欢！": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:欢！"
+      ]
+    },
+    "雅琴": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:雅琴"
       ]
     }
   },
