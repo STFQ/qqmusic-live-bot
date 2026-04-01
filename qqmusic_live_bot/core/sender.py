@@ -42,8 +42,8 @@ class MessageSender:
             self.device.clear_text()
             self.device.send_keys(str(text))
 
-            # 3. 触发发送：走最短链路，直接敲回车（多数场景映射为发送）
-            self.device.press("enter")
+            # 3. 触发发送：使用 adb 输入法的 send（keyevent 66）
+            self.device.shell("input keyevent 66")
 
             # 4. 【核心灵魂：ACK 动态回执锁】
             # 我们告诉 uiautomator2：死死盯住那个里面装着我们刚才发的话的输入框。
