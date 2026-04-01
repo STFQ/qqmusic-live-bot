@@ -41,8 +41,10 @@ TIMER_PATTERN = re.compile(r"^\s*(?:(?:PK|pk|倒计时|排位赛|距结束|剩�
 class EventParser:
     def parse(self, frame: Frame) -> list[Event]:
         events: list[Event] = []
+        gift_lines_set = set(frame.gift_lines) if frame.gift_lines is not None else None
         for line in frame.lines:
-            event = self._parse_line(line, frame.ts)
+            allow_gift = gift_lines_set is None or line in gift_lines_set
+            event = self._parse_line(line, frame.ts, allow_gift=allow_gift)
             if event:
                 events.append(event)
         pk_event = self._extract_pk(frame.lines, frame.ts)
@@ -74,7 +76,7 @@ class EventParser:
 
         return result
 
-    def _parse_line(self, line: str, ts: float) -> Event | None:
+    def _parse_line(self, line: str, ts: float, allow_gift: bool = True) -> Event | None:
         cleaned_line = self._strip_icon_placeholders(line)
 
         if TIMER_PATTERN.match(cleaned_line):
@@ -91,20 +93,21 @@ class EventParser:
         if any(pattern.search(cleaned_line) for pattern in GIFT_EXCLUDE_PATTERNS):
             return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=cleaned_line)
 
-        for pattern in GIFT_PATTERNS:
-            match = pattern.search(cleaned_line)
-            if match:
-                user = self._clean_user_name(match.group(1))
-                gift = self._strip_icon_placeholders(match.group(2))
-                if not user or "系统" in user:
-                    return None
-                count = 1
-                if match.lastindex and match.lastindex >= 3 and match.group(3):
-                    try:
-                        count = max(1, int(match.group(3)))
-                    except ValueError:
-                        count = 1
-                return Event(type=EventType.GIFT, raw=line, ts=ts, user=user, content=gift or "礼物", count=count)
+        if allow_gift:
+            for pattern in GIFT_PATTERNS:
+                match = pattern.search(cleaned_line)
+                if match:
+                    user = self._clean_user_name(match.group(1))
+                    gift = self._strip_icon_placeholders(match.group(2))
+                    if not user or "系统" in user:
+                        return None
+                    count = 1
+                    if match.lastindex and match.lastindex >= 3 and match.group(3):
+                        try:
+                            count = max(1, int(match.group(3)))
+                        except ValueError:
+                            count = 1
+                    return Event(type=EventType.GIFT, raw=line, ts=ts, user=user, content=gift or "礼物", count=count)
 
         # 系统词拦截
         if any(keyword in cleaned_line for keyword in SYSTEM_KEYWORDS):

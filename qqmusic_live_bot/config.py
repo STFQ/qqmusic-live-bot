@@ -13,6 +13,7 @@ DEFAULT_LOGGING = {
     "console_output": False,
     "pk_time": False,
     "dry_run": False,
+    "gift_region": False,
 }
 
 

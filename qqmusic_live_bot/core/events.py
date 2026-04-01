@@ -33,6 +33,10 @@ class Frame:
     ts: float
     raw_lines: list[str]
     lines: list[str]
+    gift_lines: list[str] | None = None
+    gift_repeated_lines: list[str] | None = None
+    gift_log_lines: list[dict[str, object]] | None = None
+    gift_repeated_log_lines: list[dict[str, object]] | None = None
 
 
 @dataclass

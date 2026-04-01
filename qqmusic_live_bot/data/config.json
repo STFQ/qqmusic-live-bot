@@ -2,7 +2,7 @@
   "device_addr": "127.0.0.1:5565",
   "input_box_x": 174,
   "input_box_y": 2649,
-  "dry_run": false,
+  "dry_run": true,
   "mode": "auto",
   "profile": {
     "name": "Cavalier",
@@ -36,6 +36,7 @@
   "logging": {
     "console_output": false,
     "pk_time": false,
-    "dry_run": false
+    "dry_run": false,
+    "gift_region": false
   }
 }

@@ -1,5 +1,6 @@
 ﻿from __future__ import annotations
 
+import json
 import queue
 import threading
 import time
@@ -30,6 +31,7 @@ class LiveBotApp:
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
+            gift_region=(22.8, 1484.6, 902.0, 2529.6),
         )
         self.parser = EventParser()
         self.scheduler = Scheduler(self.config.flags, self.config.limits)
@@ -170,8 +172,21 @@ class LiveBotApp:
             while self.is_running:
                 try:
                     frame = self.collector.collect(device)
+                    if self.config.logging.get("gift_region"):
+                        if frame.gift_log_lines:
+                            for item in frame.gift_log_lines:
+                                payload = {**item, "type": "gift_region_new"}
+                                self.logger.region("gift_region", json.dumps(payload, ensure_ascii=False))
+                        if frame.gift_repeated_log_lines:
+                            for item in frame.gift_repeated_log_lines:
+                                payload = {**item, "type": "gift_region_repeat"}
+                                self.logger.region("gift_region", json.dumps(payload, ensure_ascii=False))
                     self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
                     frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
+                    if frame.gift_lines is not None:
+                        frame.gift_lines = [
+                            line for line in frame.gift_lines if not should_skip_text(line, self.blacklist)
+                        ]
 
                     if not frame.lines:
                         time.sleep(float(self.config.limits["main_loop_interval"]))

@@ -25,6 +25,13 @@ class BotLogger:
     def warning(self, message: str) -> None:
         self.info(f"[WARN] {message}")
 
+    def region(self, name: str, message: str) -> None:
+        line = f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}"
+        date_name = time.strftime("%Y%m%d")
+        region_log = self.log_dir / f"{name}_{date_name}.log"
+        with region_log.open("a", encoding="utf-8") as fh:
+            fh.write(line + "\n")
+
     def event(self, payload: dict[str, Any]) -> None:
         with self.json_log.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(payload, ensure_ascii=False) + "\n")
