@@ -11,7 +11,7 @@ class TrimReplyTests(unittest.TestCase):
         text = trim_gift_reply("特别特别长的用户名", "超级火箭", 18)
 
         self.assertLessEqual(len(text), 18)
-        self.assertTrue(text.startswith("感谢 @"))
+        self.assertTrue(text.startswith("谢谢 @"))
         self.assertIn("超级火箭", text)
 
     def test_trim_gift_reply_keeps_count_suffix(self) -> None:

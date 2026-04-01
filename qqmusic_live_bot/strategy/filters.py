@@ -81,9 +81,9 @@ def trim_gift_reply(user: str, gift: str, max_len: int) -> str:
     user = normalize_text(user)
     gift = normalize_text(gift)
     if not user or not gift:
-        return trim_reply(f"感谢 @{user} {gift}".strip(), max_len)
+        return trim_reply(f"谢谢 @{user} {gift}".strip(), max_len)
 
-    prefix = "感谢 @"
+    prefix = "谢谢 @"
     separator = " "
     full_text = f"{prefix}{user}{separator}{gift}"
     if len(full_text) <= max_len:
@@ -91,7 +91,7 @@ def trim_gift_reply(user: str, gift: str, max_len: int) -> str:
 
     dynamic_budget = max_len - len(prefix) - len(separator)
     if dynamic_budget <= 0:
-        return trim_reply("感谢", max_len)
+        return trim_reply("谢谢", max_len)
 
     user_budget = 0
     gift_budget = 0

@@ -22,6 +22,9 @@ class BotLogger:
         with self.text_log.open("a", encoding="utf-8") as fh:
             fh.write(line + "\n")
 
+    def warning(self, message: str) -> None:
+        self.info(f"[WARN] {message}")
+
     def event(self, payload: dict[str, Any]) -> None:
         with self.json_log.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(payload, ensure_ascii=False) + "\n")

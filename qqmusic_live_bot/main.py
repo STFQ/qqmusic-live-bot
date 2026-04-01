@@ -152,6 +152,10 @@ class LiveBotApp:
             logger=self.logger,
             dry_run=self.config.dry_run,
             log_dry_run=bool(self.config.logging["dry_run"]),
+            send_x=1154.5,
+            send_y=2540.3,
+            fallback_send_x=1147.5,
+            fallback_send_y=2697.5,
         )
         self.logger.info(
             f"稳定版 V1 已启动(双线程极速版) | mode={self.state.mode} | dry_run={self.config.dry_run} | device={self.config.device_addr}"
