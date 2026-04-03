@@ -37,6 +37,7 @@
     "console_output": false,
     "pk_time": false,
     "dry_run": false,
-    "gift_region": false
+    "gift_region": false,
+    "all_lines": true
   }
 }

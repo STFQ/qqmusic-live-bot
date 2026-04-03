@@ -37,6 +37,8 @@ class Frame:
     gift_repeated_lines: list[str] | None = None
     gift_log_lines: list[dict[str, object]] | None = None
     gift_repeated_log_lines: list[dict[str, object]] | None = None
+    raw_log_lines: list[dict[str, object]] | None = None
+    gift_region_raw_log_lines: list[dict[str, object]] | None = None
 
 
 @dataclass

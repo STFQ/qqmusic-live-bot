@@ -19,13 +19,13 @@
       ]
     },
     "Cavalier": {
-      "gift_count": 120,
+      "gift_count": 223,
       "chat_count": 0,
       "notes": [
-        "gift:Cavalier:爱心:3",
         "gift:Cavalier:爱心:1",
         "gift:Cavalier:爱心:1",
-        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:魔力水晶:1",
+        "gift:Cavalier:一骑绝尘:1",
         "gift:Cavalier:爱心:1"
       ]
     },
@@ -105,24 +105,24 @@
       ]
     },
     "小煤球": {
-      "gift_count": 8,
+      "gift_count": 12,
       "chat_count": 0,
       "notes": [
         "gift:小煤球:爱心:1",
-        "gift:小煤球:打call:2",
-        "welcome:小煤球",
+        "gift:小煤球:饭团:58",
+        "gift:小煤球:打call:1",
         "gift:小煤球:打call:1",
         "gift:小煤球:爱心:1"
       ]
     },
     "噔噔蹬蹬": {
-      "gift_count": 9,
+      "gift_count": 17,
       "chat_count": 0,
       "notes": [
-        "gift:噔噔蹬蹬:饭团:55",
-        "gift:噔噔蹬蹬:打call:1",
-        "gift:噔噔蹬蹬:饭团:40",
-        "gift:噔噔蹬蹬:打call:1",
+        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:爱心:1",
+        "gift:噔噔蹬蹬:爱心:1",
         "gift:噔噔蹬蹬:打call:1"
       ]
     },
@@ -1428,12 +1428,13 @@
       ]
     },
     "就是爱音乐": {
-      "gift_count": 0,
+      "gift_count": 2,
       "chat_count": 0,
       "notes": [
         "welcome:就是爱音乐",
         "welcome:就是爱音乐",
-        "welcome:就是爱音乐",
+        "gift:就是爱音乐:爱心:1",
+        "gift:就是爱音乐:春苗:1",
         "welcome:就是爱音乐"
       ]
     },
@@ -2723,12 +2724,14 @@
       ]
     },
     "醉": {
-      "gift_count": 1,
+      "gift_count": 2,
       "chat_count": 0,
       "notes": [
         "welcome:醉",
         "gift:醉:为你写信:1",
-        "welcome:醉"
+        "welcome:醉",
+        "welcome:醉",
+        "gift:醉:爱心:1"
       ]
     },
     "泽❤️落": {
@@ -2838,6 +2841,438 @@
       "chat_count": 0,
       "notes": [
         "welcome:雅琴"
+      ]
+    },
+    "縱儿": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:縱儿"
+      ]
+    },
+    "六郎": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:六郎"
+      ]
+    },
+    "财神请旺我": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:财神请旺我:甜分超标:1"
+      ]
+    },
+    "偷吻晚风": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:偷吻晚风"
+      ]
+    },
+    "辞": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:辞:饭团:3"
+      ]
+    },
+    "One": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:One:小星星:1"
+      ]
+    },
+    "鱼丫头": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:鱼丫头:柿柿顺意:1"
+      ]
+    },
+    "惊世先生_万钧": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:惊世先生_万钧"
+      ]
+    },
+    "易拉罐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:易拉罐"
+      ]
+    },
+    "野原新之助1024": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:野原新之助1024"
+      ]
+    },
+    "赵": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:赵"
+      ]
+    },
+    "词er": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:词er"
+      ]
+    },
+    "来不拉力": {
+      "gift_count": 4,
+      "chat_count": 0,
+      "notes": [
+        "gift:来不拉力:魔力水晶:1",
+        "gift:来不拉力:饭团:1314",
+        "gift:来不拉力:春苗:10",
+        "gift:来不拉力:甜分超标:1"
+      ]
+    },
+    "nuli": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:nuli:爱心:1",
+        "gift:nuli:爱心:1"
+      ]
+    },
+    "：nuli": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:：nuli:爱心:1"
+      ]
+    },
+    "来不拉力：来不拉力": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:来不拉力：来不拉力:春苗:10"
+      ]
+    },
+    "梦忆恋": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:梦忆恋"
+      ]
+    },
+    "宝藏点歌机": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:宝藏点歌机"
+      ]
+    },
+    "昔夏": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:昔夏"
+      ]
+    },
+    "梧桐虽立，其心已空": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:梧桐虽立，其心已空"
+      ]
+    },
+    "狸小鱼": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:狸小鱼"
+      ]
+    },
+    "十七：狸小鱼": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:十七：狸小鱼:爱心:1"
+      ]
+    },
+    "不二家Jinx 进入了直播间：十七：狸小鱼": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:不二家Jinx 进入了直播间：十七：狸小鱼:爱心:1"
+      ]
+    },
+    "Sunny_咩咩羊": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Sunny_咩咩羊",
+        "gift:Sunny_咩咩羊:魔力水晶:1"
+      ]
+    },
+    "锅锅（遗憾版）": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:锅锅（遗憾版）"
+      ]
+    },
+    "沉伦": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:沉伦"
+      ]
+    },
+    "呜呜猪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:呜呜猪"
+      ]
+    },
+    "Lonely Walker": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Lonely Walker"
+      ]
+    },
+    "巧": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:巧"
+      ]
+    },
+    "倍好运：小煤球": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:倍好运：小煤球:饭团:58"
+      ]
+    },
+    "忧郁小王子": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:忧郁小王子:饭团:20",
+        "welcome:忧郁小王子",
+        "gift:忧郁小王子:春苗:1",
+        "welcome:忧郁小王子"
+      ]
+    },
+    "Cavalier：Cavalier": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:Cavalier：Cavalier:爱心:1",
+        "gift:Cavalier：Cavalier:爱心:1"
+      ]
+    },
+    "噔噔蹬蹬：谢谢 @Cavalier 爱心：Cavalier": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:噔噔蹬蹬：谢谢 @Cavalier 爱心：Cavalier:爱心:1",
+        "gift:噔噔蹬蹬：谢谢 @Cavalier 爱心：Cavalier:春苗:1"
+      ]
+    },
+    "ZingZingZing": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:ZingZingZing"
+      ]
+    },
+    "噔噔蹬蹬：谢谢 @噔噔蹬蹬：谢谢 @Cavalier 爱心：C… 春苗：Cavalier": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:噔噔蹬蹬：谢谢 @噔噔蹬蹬：谢谢 @Cavalier 爱心：C… 春苗：Cavalier:爱心:1"
+      ]
+    },
+    "Susan": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Susan"
+      ]
+    },
+    "笑傲江湖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:笑傲江湖"
+      ]
+    },
+    "好久不见": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:好久不见"
+      ]
+    },
+    "绾菟碎否": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:绾菟碎否"
+      ]
+    },
+    "梦仔宝贝": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:梦仔宝贝"
+      ]
+    },
+    "忆安": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忆安"
+      ]
+    },
+    "C": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:C"
+      ]
+    },
+    "怪力乱神": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:怪力乱神"
+      ]
+    },
+    "断弦": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:断弦"
+      ]
+    },
+    "小甜椒~喵": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小甜椒~喵"
+      ]
+    },
+    "靖宇": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:靖宇"
+      ]
+    },
+    "嘉嘉嘉": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:嘉嘉嘉"
+      ]
+    },
+    "结语皖吟": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:结语皖吟"
+      ]
+    },
+    "无敌仙尊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:无敌仙尊"
+      ]
+    },
+    "忍住": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忍住"
+      ]
+    },
+    "桅秋的巷": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:桅秋的巷"
+      ]
+    },
+    "王小呆": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:王小呆"
+      ]
+    },
+    "206": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:206"
+      ]
+    },
+    "金碗不打羊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:金碗不打羊"
+      ]
+    },
+    "清风拂杨柳": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:清风拂杨柳:魔力水晶:5",
+        "gift:清风拂杨柳:烟花的季节:1"
+      ]
+    },
+    "清福": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:清福"
+      ]
+    },
+    "真诚": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:真诚"
+      ]
+    },
+    "柠檬皮皮": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:柠檬皮皮:饭团:35",
+        "gift:柠檬皮皮:春苗:10"
+      ]
+    },
+    "暴躁狮": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:暴躁狮:山河画卷:1"
+      ]
+    },
+    "靈蠶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:靈蠶"
       ]
     }
   },

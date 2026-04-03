@@ -14,6 +14,7 @@ DEFAULT_LOGGING = {
     "pk_time": False,
     "dry_run": False,
     "gift_region": False,
+    "all_lines": False,
 }
 
 

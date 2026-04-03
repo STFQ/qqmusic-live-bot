@@ -31,7 +31,7 @@ class LiveBotApp:
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
-            gift_region=(22.8, 1484.6, 902.0, 2529.6),
+            gift_region=(46.0, 1335.0, 927.0, 2568.0),
         )
         self.parser = EventParser()
         self.scheduler = Scheduler(self.config.flags, self.config.limits)
@@ -181,6 +181,10 @@ class LiveBotApp:
                             for item in frame.gift_repeated_log_lines:
                                 payload = {**item, "type": "gift_region_repeat"}
                                 self.logger.region("gift_region", json.dumps(payload, ensure_ascii=False))
+                    if self.config.logging.get("all_lines") and frame.gift_region_raw_log_lines:
+                        for item in frame.gift_region_raw_log_lines:
+                            payload = {**item, "type": "raw_text_node"}
+                            self.logger.region("all_lines", json.dumps(payload, ensure_ascii=False))
                     self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
                     frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
                     if frame.gift_lines is not None:

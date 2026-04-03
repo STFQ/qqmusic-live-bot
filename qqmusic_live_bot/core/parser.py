@@ -94,6 +94,8 @@ class EventParser:
             return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=cleaned_line)
 
         if allow_gift:
+            if any(keyword in cleaned_line for keyword in SYSTEM_KEYWORDS):
+                return Event(type=EventType.SYSTEM, raw=line, ts=ts, content=cleaned_line)
             for pattern in GIFT_PATTERNS:
                 match = pattern.search(cleaned_line)
                 if match:
@@ -122,7 +124,8 @@ class EventParser:
                     return None
                 return Event(type=EventType.CHAT, raw=line, ts=ts, user=user, content=content)
 
-        return Event(type=EventType.CHAT, raw=line, ts=ts, content=cleaned_line)
+        # 丢弃无法归类的孤立文本，避免被当成聊天噪音
+        return None
 
     def _strip_icon_placeholders(self, text: str) -> str:
         return re.sub(r"\s+", " ", ICON_PLACEHOLDER_PATTERN.sub("", text or "")).strip()
