@@ -31,8 +31,12 @@ class Event:
 @dataclass
 class Frame:
     ts: float
-    raw_lines: list[str]
-    lines: list[str]
+    raw_lines: list[str] = field(default_factory=list)
+    lines: list[str] = field(default_factory=list)
+    gift_lines: list[str] = field(default_factory=list)
+    welcome_nodes: list[dict[str, Any]] = field(default_factory=list)
+    pk_status_text: str = ""
+    pk_seconds: int | None = None
 
 
 @dataclass

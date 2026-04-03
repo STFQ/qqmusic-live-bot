@@ -14,7 +14,7 @@ from .core.sender import MessageSender
 from .core.state import BotState
 from .services.logger import BotLogger
 from .services.storage import MemoryService
-from .strategy.filters import load_blacklist, should_skip_text, trim_gift_reply, trim_reply
+from .strategy.filters import trim_gift_reply, trim_reply
 
 
 class LiveBotApp:
@@ -26,7 +26,6 @@ class LiveBotApp:
             console_output=bool(self.config.logging["console_output"]),
         )
         self.memory = MemoryService(self.root / "data" / "memory.json")
-        self.blacklist = load_blacklist(self.root / "data" / "blacklist.json")
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
@@ -170,14 +169,21 @@ class LiveBotApp:
             while self.is_running:
                 try:
                     frame = self.collector.collect(device)
+                    for index, line in enumerate(frame.gift_lines):
+                        self.logger.gift_lines(
+                            {
+                                "ts": frame.ts,
+                                "type": "gift_region_text",
+                                "index": index,
+                                "text": line,
+                            }
+                        )
                     self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
-                    frame.lines = [line for line in frame.lines if not should_skip_text(line, self.blacklist)]
-
-                    if not frame.lines:
-                        time.sleep(float(self.config.limits["main_loop_interval"]))
-                        continue
 
                     events = self.parser.parse(frame)
+                    if not events:
+                        time.sleep(float(self.config.limits["main_loop_interval"]))
+                        continue
                     fresh_events = []
                     latest_pk_event = None
                     for event in events:

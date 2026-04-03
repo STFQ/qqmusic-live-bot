@@ -17,7 +17,7 @@
     "enable_pk_remind": true
   },
   "limits": {
-    "main_loop_interval": 0.25,
+    "main_loop_interval": 0.3,
     "welcome_interval": 0.0,
     "gift_thank_interval": 0.0,
     "chat_reply_interval": 0.0,

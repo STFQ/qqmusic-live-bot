@@ -19,14 +19,14 @@
       ]
     },
     "Cavalier": {
-      "gift_count": 120,
+      "gift_count": 177,
       "chat_count": 0,
       "notes": [
-        "gift:Cavalier:爱心:3",
         "gift:Cavalier:爱心:1",
-        "gift:Cavalier:爱心:1",
-        "gift:Cavalier:爱心:1",
-        "gift:Cavalier:爱心:1"
+        "gift:Cavalier:春苗:12",
+        "gift:Cavalier:魔力水晶:1",
+        "gift:Cavalier:魔力水晶:1",
+        "gift:Cavalier:爱恋相机:1"
       ]
     },
     ".. 赠": {
@@ -105,23 +105,23 @@
       ]
     },
     "小煤球": {
-      "gift_count": 8,
+      "gift_count": 13,
       "chat_count": 0,
       "notes": [
         "gift:小煤球:爱心:1",
-        "gift:小煤球:打call:2",
-        "welcome:小煤球",
+        "gift:小煤球:饭团:3",
+        "gift:小煤球:饭团:58",
         "gift:小煤球:打call:1",
         "gift:小煤球:爱心:1"
       ]
     },
     "噔噔蹬蹬": {
-      "gift_count": 9,
+      "gift_count": 12,
       "chat_count": 0,
       "notes": [
-        "gift:噔噔蹬蹬:饭团:55",
         "gift:噔噔蹬蹬:打call:1",
-        "gift:噔噔蹬蹬:饭团:40",
+        "gift:噔噔蹬蹬:打call:1",
+        "gift:噔噔蹬蹬:饭团:117",
         "gift:噔噔蹬蹬:打call:1",
         "gift:噔噔蹬蹬:打call:1"
       ]
@@ -1057,14 +1057,14 @@
       ]
     },
     "你家鱼哥ya": {
-      "gift_count": 11,
+      "gift_count": 13,
       "chat_count": 0,
       "notes": [
-        "gift:你家鱼哥ya:爱心:1",
-        "gift:你家鱼哥ya:爱心:1",
         "gift:你家鱼哥ya:挚爱玫瑰:10",
         "gift:你家鱼哥ya:打call:2",
-        "gift:你家鱼哥ya:爱心:1"
+        "gift:你家鱼哥ya:爱心:1",
+        "gift:你家鱼哥ya:爱心:1",
+        "gift:你家鱼哥ya:饭团:30"
       ]
     },
     "沈砚冰、‭⁧‭⁧~❤️‍..⁧‭⁧‭": {
@@ -1434,6 +1434,7 @@
         "welcome:就是爱音乐",
         "welcome:就是爱音乐",
         "welcome:就是爱音乐",
+        "welcome:就是爱音乐",
         "welcome:就是爱音乐"
       ]
     },
@@ -1590,6 +1591,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:尘埃",
         "welcome:尘埃"
       ]
     },
@@ -2838,6 +2840,637 @@
       "chat_count": 0,
       "notes": [
         "welcome:雅琴"
+      ]
+    },
+    "晚是孤独的晚": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:晚是孤独的晚"
+      ]
+    },
+    "宠你の小笨蛋": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:宠你の小笨蛋:黑色甜蜜:1",
+        "gift:宠你の小笨蛋:黑色甜蜜:1",
+        "welcome:宠你の小笨蛋",
+        "gift:宠你の小笨蛋:魔力水晶:1"
+      ]
+    },
+    "♏ 琦崽": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:♏ 琦崽"
+      ]
+    },
+    "六月 喜吃糖": {
+      "gift_count": 5,
+      "chat_count": 0,
+      "notes": [
+        "gift:六月 喜吃糖:饭团:2",
+        "gift:六月 喜吃糖:饭团:2",
+        "gift:六月 喜吃糖:魔力水晶球:1",
+        "gift:六月 喜吃糖:魔力水晶球:1",
+        "gift:六月 喜吃糖:魔力水晶球:1"
+      ]
+    },
+    "无与伦比": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:无与伦比"
+      ]
+    },
+    "彼岸": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:彼岸"
+      ]
+    },
+    "公子鍌（xiǎn）": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:公子鍌（xiǎn）"
+      ]
+    },
+    "赚一百万": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:赚一百万"
+      ]
+    },
+    "气质彬": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:气质彬"
+      ]
+    },
+    "H.S.P": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:H.S.P"
+      ]
+    },
+    "菲儿": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:菲儿"
+      ]
+    },
+    "El Psy Congroo": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:El Psy Congroo"
+      ]
+    },
+    "zzl": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:zzl"
+      ]
+    },
+    "财神请旺我": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:财神请旺我:烟花的季节:1",
+        "gift:财神请旺我:烟花的季节:1"
+      ]
+    },
+    "匹夫": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:匹夫"
+      ]
+    },
+    "八九！": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:八九！"
+      ]
+    },
+    "一鲸落万物生": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:一鲸落万物生:魔力水晶球:10",
+        "gift:一鲸落万物生:春苗:1"
+      ]
+    },
+    "小困贝": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小困贝"
+      ]
+    },
+    "昱晓蟹蟹": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:昱晓蟹蟹"
+      ]
+    },
+    "万般喜乐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:万般喜乐"
+      ]
+    },
+    "愁野": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:愁野"
+      ]
+    },
+    "小辞": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小辞"
+      ]
+    },
+    "回信": {
+      "gift_count": 7,
+      "chat_count": 0,
+      "notes": [
+        "gift:回信:饭团:3",
+        "gift:回信:春苗:1",
+        "gift:回信:饭团:3",
+        "gift:回信:春苗:1",
+        "gift:回信:春苗:1"
+      ]
+    },
+    "Timid cutie": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Timid cutie"
+      ]
+    },
+    "天气之子": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:天气之子"
+      ]
+    },
+    "..要跟数学同归于尽": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..要跟数学同归于尽"
+      ]
+    },
+    "momo": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:momo"
+      ]
+    },
+    "我来找找存在感": {
+      "gift_count": 8,
+      "chat_count": 0,
+      "notes": [
+        "gift:我来找找存在感:饭团:1000",
+        "gift:我来找找存在感:冲锋号角:888",
+        "gift:我来找找存在感:饭团:1000",
+        "gift:我来找找存在感:冲锋号角:888",
+        "gift:我来找找存在感:冲锋号角:888"
+      ]
+    },
+    "六侠": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:六侠"
+      ]
+    },
+    "鱼丫头": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:鱼丫头"
+      ]
+    },
+    "春天的花": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:春天的花"
+      ]
+    },
+    "喵喵喵": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:喵喵喵"
+      ]
+    },
+    "fuqing": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:fuqing"
+      ]
+    },
+    "南汐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:南汐"
+      ]
+    },
+    "耶耶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:耶耶"
+      ]
+    },
+    "猪猪": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:猪猪"
+      ]
+    },
+    "布布": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:布布"
+      ]
+    },
+    "零度": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:零度",
+        "welcome:零度"
+      ]
+    },
+    "双林": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:双林"
+      ]
+    },
+    "云端": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "welcome:云端",
+        "gift:云端:饭团:18",
+        "gift:云端:魔力水晶:3",
+        "gift:云端:魔力水晶:1"
+      ]
+    },
+    "奀奀": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:奀奀"
+      ]
+    },
+    "网友且慢": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:网友且慢"
+      ]
+    },
+    "日不落月落": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:日不落月落"
+      ]
+    },
+    "..X": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..X"
+      ]
+    },
+    "珍玲": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:珍玲"
+      ]
+    },
+    "al": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:al"
+      ]
+    },
+    "平平安安": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:平平安安"
+      ]
+    },
+    "ZHL": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:ZHL"
+      ]
+    },
+    "朵朵": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:朵朵"
+      ]
+    },
+    "Ls-昭昭": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Ls-昭昭"
+      ]
+    },
+    "..夜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..夜"
+      ]
+    },
+    "寵笙": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:寵笙:饭团:66"
+      ]
+    },
+    "小甜星": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小甜星"
+      ]
+    },
+    "L": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:L"
+      ]
+    },
+    "天": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:天"
+      ]
+    },
+    "宁静致远": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:宁静致远"
+      ]
+    },
+    "唔噜噜噜噜噜噜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:唔噜噜噜噜噜噜"
+      ]
+    },
+    "初玖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:初玖"
+      ]
+    },
+    "✨查尔斯₄₁": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:✨查尔斯₄₁",
+        "welcome:✨查尔斯₄₁"
+      ]
+    },
+    "月莫珐屁": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:月莫珐屁"
+      ]
+    },
+    "财税&明": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:财税&明"
+      ]
+    },
+    "咔时刻定格的美好": {
+      "gift_count": 5,
+      "chat_count": 0,
+      "notes": [
+        "gift:咔时刻定格的美好:魔力水晶:1",
+        "gift:咔时刻定格的美好:魔力水晶:1",
+        "gift:咔时刻定格的美好:魔力水晶:1",
+        "gift:咔时刻定格的美好:魔力水晶:1",
+        "gift:咔时刻定格的美好:魔力水晶:1"
+      ]
+    },
+    "贏赢": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:贏赢"
+      ]
+    },
+    "敢敢": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:敢敢:饭团:888"
+      ]
+    },
+    "傻崽崽": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:傻崽崽",
+        "gift:傻崽崽:爱心:1"
+      ]
+    },
+    "♥财运降临": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:♥财运降临"
+      ]
+    },
+    "绘颜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:绘颜"
+      ]
+    },
+    "叶不归": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:叶不归"
+      ]
+    },
+    "张砚临·叙白": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:张砚临·叙白:饭团:123",
+        "gift:张砚临·叙白:饭团:123"
+      ]
+    },
+    "白鼬.ˣʸ": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:白鼬.ˣʸ:饭团:564"
+      ]
+    },
+    "❄️沈砚冰": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:❄️沈砚冰:青团:1",
+        "gift:❄️沈砚冰:春燕风铃:1"
+      ]
+    },
+    "孤独的狼": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:孤独的狼"
+      ]
+    },
+    "酒": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:酒"
+      ]
+    },
+    ".Mango.ა ૮.ෆ ა": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:.Mango.ა ૮.ෆ ა"
+      ]
+    },
+    "我也不知道": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我也不知道"
+      ]
+    },
+    "終归妄･毋滥ᵀ": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:終归妄･毋滥ᵀ"
+      ]
+    },
+    "酒巷": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:酒巷"
+      ]
+    },
+    "墨逆": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:墨逆"
+      ]
+    },
+    "沫妄": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:沫妄"
+      ]
+    },
+    "家": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:家"
+      ]
+    },
+    "选错了": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:选错了"
+      ]
+    },
+    "朱大强": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:朱大强"
+      ]
+    },
+    "楚涵": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:楚涵"
+      ]
+    },
+    "iKUN": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:iKUN"
+      ]
+    },
+    "pineapple撒": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:pineapple撒"
+      ]
+    },
+    "战斗": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:战斗"
       ]
     }
   },

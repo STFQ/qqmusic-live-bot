@@ -7,27 +7,53 @@ from ..strategy.templates import GIFT_TEMPLATES, pick
 
 class GiftFeature:
     def __init__(self, limits: dict[str, float]) -> None:
-        # [修改] 彻底干掉了 seen_gifts（防重指纹池），因为 collector 已经在物理层面帮我们去重了！
-        # 现在只保留 pending，用来等待大哥的连击合并
         self.limits = limits
         self.pending: dict[tuple[str, str], dict[str, object]] = {}
+        # Independent gift dedupe cache to avoid re-thanking old sticky gift lines.
+        self.seen: dict[tuple[str, str], dict[str, float]] = {}
+        self.seen_ttl = float(self.limits.get("gift_seen_ttl", 1800.0))
+        self.same_key_gap = float(self.limits.get("gift_same_key_gap", 30.0))
 
     def _cleanup(self, now_ts: float) -> None:
-        # [修改] 不再依赖容易引发血案的 dedupe_ttl。
-        # 这里仅仅作为一个底层的内存泄漏保护：如果有个礼物卡在队列里 15 秒还没处理掉，才会被清理。
         self.pending = {
             key: value
             for key, value in self.pending.items()
             if now_ts - float(value["last_seen"]) < 15.0
         }
+        self.seen = {
+            key: value
+            for key, value in self.seen.items()
+            if now_ts - float(value["last_seen"]) < self.seen_ttl
+        }
+
+    def _should_accept_gift(self, event: Event, now_ts: float) -> bool:
+        key = (event.user, event.content)
+        record = self.seen.get(key)
+        if record is None:
+            self.seen[key] = {"last_count": float(event.count), "last_seen": now_ts}
+            return True
+
+        last_count = int(record.get("last_count", 0))
+        last_seen = float(record.get("last_seen", 0.0))
+
+        # Same user+gift after a gap should be treated as a new gift instance.
+        if now_ts - last_seen > self.same_key_gap:
+            self.seen[key] = {"last_count": float(event.count), "last_seen": now_ts}
+            return True
+
+        # Continuous combo increments should be accepted.
+        if int(event.count) > last_count:
+            self.seen[key] = {"last_count": float(event.count), "last_seen": now_ts}
+            return True
+
+        return False
 
     def _ingest(self, events: list[Event], now_ts: float) -> None:
         for event in events:
             if event.type != EventType.GIFT:
                 continue
-
-            # 🔪 [核心删除] 以前这里有一行 if event.fingerprint in self.seen_gifts: continue
-            # 已经被彻底删除了！我们 100% 信任传进来的都是新弹幕！
+            if not self._should_accept_gift(event, now_ts):
+                continue
 
             key = (event.user, event.content)
             bucket = self.pending.get(key)
@@ -42,7 +68,6 @@ class GiftFeature:
                 }
                 continue
 
-            # 【完美保留】：大哥连击礼物（如 x2, x3）依然会在这里合并！
             current_count = int(bucket["count"])
             if event.count > 1:
                 bucket["count"] = max(current_count, event.count)
@@ -58,14 +83,12 @@ class GiftFeature:
         self._cleanup(now_ts)
         self._ingest(events, now_ts)
 
-        # 频率控制：距离上次感谢必须大于设定的间隔
         if now_ts - state.last_gift_time < self.limits.get("gift_thank_interval", 0.0):
             return None
 
         if not self.pending:
             return None
 
-        # 【核心拦截】：筛选出度过“合并窗口期”（比如 1.5 秒内没有再连击）的礼物
         ready_items = []
         for key, payload in self.pending.items():
             wait_time = now_ts - float(payload["last_seen"])
@@ -75,7 +98,6 @@ class GiftFeature:
         if not ready_items:
             return None
 
-        # 优先感谢最早送出的那个
         key, payload = sorted(ready_items, key=lambda item: float(item[1]["first_seen"]))[0]
         count = int(payload["count"])
         gift = str(payload["gift"])
@@ -85,7 +107,6 @@ class GiftFeature:
         text = pick(GIFT_TEMPLATES, user=user, gift=gift_label)
         raw = f"gift:{user}:{gift}:{count}"
 
-        # 处理完毕，移出队列
         self.pending.pop(key, None)
 
         return ReplyAction(

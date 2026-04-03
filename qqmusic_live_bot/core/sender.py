@@ -2,6 +2,8 @@
 
 import time
 
+SEND_BUTTON_RESOURCE_ID = "com.tencent.qqmusic:id/mlive_input_operate"
+
 
 class MessageSender:
     def __init__(
@@ -57,8 +59,8 @@ class MessageSender:
             self.device.clear_text()
             self.device.send_keys(str(text))
 
-            # 3. 触发发送：优先点击发送按钮坐标，避免 adbkeyboard 二次触发
-            ack_success = self._try_send_with_coords(self.send_x, self.send_y, text)
+            # 3. 触发发送：优先点击发送按钮控件，失败再回退坐标
+            ack_success = self._try_send_button(text)
 
             # 兜底坐标：首次失败时再尝试一次
             if not ack_success and self.fallback_send_x is not None and self.fallback_send_y is not None:
@@ -75,12 +77,26 @@ class MessageSender:
             self.logger.warning(f"send_message 异常: {exc}")
             return False
 
+    def _try_send_button(self, text: str) -> bool:
+        try:
+            button = self.device(resourceId=SEND_BUTTON_RESOURCE_ID)
+            if button.exists:
+                button.click()
+                return self._wait_for_send_ack(text)
+        except Exception as exc:
+            self.logger.info(f"发送按钮控件点击失败，准备回退: {exc}")
+
+        return self._try_send_with_coords(self.send_x, self.send_y, text)
+
     def _try_send_with_coords(self, send_x: float | None, send_y: float | None, text: str) -> bool:
         if send_x is not None and send_y is not None:
             self.device.click(int(send_x), int(send_y))
         else:
             self.device.shell("input keyevent 66")
 
+        return self._wait_for_send_ack(text)
+
+    def _wait_for_send_ack(self, text: str) -> bool:
         # 【核心灵魂：ACK 动态回执锁】
         # 输入框消失/清空/文本变化都算成功，避免误判导致重发。
         start_ts = time.time()

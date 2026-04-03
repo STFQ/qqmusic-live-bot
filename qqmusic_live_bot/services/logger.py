@@ -14,6 +14,7 @@ class BotLogger:
         date_name = time.strftime("%Y%m%d")
         self.text_log = self.log_dir / f"run_{date_name}.log"
         self.json_log = self.log_dir / f"events_{date_name}.jsonl"
+        self.gift_lines_log = self.log_dir / f"gift_lines_{date_name}.jsonl"
 
     def info(self, message: str) -> None:
         line = f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}"
@@ -27,4 +28,8 @@ class BotLogger:
 
     def event(self, payload: dict[str, Any]) -> None:
         with self.json_log.open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps(payload, ensure_ascii=False) + "\n")
+
+    def gift_lines(self, payload: dict[str, Any]) -> None:
+        with self.gift_lines_log.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(payload, ensure_ascii=False) + "\n")

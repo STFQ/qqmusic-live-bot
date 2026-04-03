@@ -1,156 +1,127 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
+import re
 import time
-from dataclasses import dataclass
 
 from .events import Frame
 from ..strategy.filters import normalize_text
 
-CHROME_NOISE_TEXTS = {
-    "ATX",
-    "LibChecker",
-    "QQ音乐",
-    "图库",
-    "应用分身",
-    "文件",
-    "设置",
-}
-
-NOISE_SUBSTRINGS = (
-    "MVP",
-    "No.",
-    "PK结果",
-    "结果展示",
-    "抢到了",
-    "抢头条",
-    "抢红包",
-    "热门榜",
-    "积分",
-    "已集满",
-    "微博挂件",
-    "红包挂件",
-    "礼物殿堂",
-    "礼物卡",
-    "本场MVP",
-    "热门活动",
-    "助力粉丝宝箱",
-    "助力主播胜利",
-    "合成",
-    "魔法",
-    "白银礼物卡",
-    "赠 给",
-    "赠给",
-)
-
-
-@dataclass
-class TextNode:
-    text: str
-    bounds: tuple[int, int, int, int]
-
-    @property
-    def center_x(self) -> float:
-        return (self.bounds[0] + self.bounds[2]) / 2
-
-    @property
-    def center_y(self) -> float:
-        return (self.bounds[1] + self.bounds[3]) / 2
-
-
-@dataclass
-class CollectorState:
-    recent_items: dict[str, list[dict[str, float]]]
+GIFT_THANKS_REGION = (52, 1543, 855, 2565)
+COMMENT_RESOURCE_ID = "com.tencent.qqmusic:id/mlive_comment_item_content"
+PK_STATUS_RESOURCE_ID = "com.tencent.qqmusic:id/mlive_audio_link_pk_status_view"
+WELCOME_RESOURCE_ID = "com.tencent.qqmusic:id/mlive_item_join_room_content"
+PK_TIME_PATTERN = re.compile(r"(\d{1,2})\s*[:：]\s*(\d{2})")
+PK_STATUS_EXCLUDE_KEYWORDS = ("结果展示",)
 
 
 class TextCollector:
     def __init__(self, line_ttl: float = 12.0, y_tolerance: float = 20.0):
         self.line_ttl = line_ttl
         self.y_tolerance = y_tolerance
-        self.state = CollectorState(recent_items={})
 
-    def _cleanup(self, now_ts: float) -> None:
-        cleaned: dict[str, list[dict[str, float]]] = {}
-        for text, records in self.state.recent_items.items():
-            alive = [record for record in records if now_ts - record["ts"] < self.line_ttl]
-            if alive:
-                cleaned[text] = alive
-        self.state.recent_items = cleaned
-
-    def _device_window_size(self, device) -> tuple[int, int]:
+    def _collect_comment_nodes(self, device):
         try:
-            width, height = device.window_size()
-            return int(width), int(height)
-        except Exception:
-            return (1080, 1920)
-
-    def _is_noise_text(self, text: str) -> bool:
-        if text in CHROME_NOISE_TEXTS:
-            return True
-        lowered = text.lower()
-        if lowered in {"qqmusic", "libchecker"}:
-            return True
-        compact = text.replace(" ", "")
-        return any(token in text or token in compact for token in NOISE_SUBSTRINGS)
-
-    def _in_live_region(self, bounds: tuple[int, int, int, int], window_size: tuple[int, int]) -> bool:
-        width, height = window_size
-        left, top, right, bottom = bounds
-        if width <= 0 or height <= 0:
-            return False
-        if right <= left or bottom <= top:
-            return False
-
-        center_x = (left + right) / 2
-        center_y = (top + bottom) / 2
-
-        in_pk_band = height * 0.06 <= center_y <= height * 0.26 and width * 0.24 <= center_x <= width * 0.78
-        in_message_band = height * 0.22 <= center_y <= height * 0.80 and center_x <= width * 0.78
-        return in_pk_band or in_message_band
-
-    def _collect_textview_nodes(self, device) -> list[TextNode]:
-        window_size = self._device_window_size(device)
-
-        try:
-            nodes = device.xpath("//android.widget.TextView").all()
+            return device.xpath(f'//*[@resource-id="{COMMENT_RESOURCE_ID}"]').all()
         except Exception:
             return []
 
-        candidates: list[TextNode] = []
+    def _collect_region_texts(self, device, region: tuple[int, int, int, int]) -> list[str]:
+        nodes = self._collect_comment_nodes(device)
+
+        left_limit, top_limit, right_limit, bottom_limit = region
+        texts: list[str] = []
+        seen: set[tuple[str, tuple[int, int, int, int]]] = set()
 
         for node in nodes:
             text = normalize_text(getattr(node, "text", ""))
-            if not text or self._is_noise_text(text):
+            if not text:
                 continue
             bounds = getattr(node, "bounds", (0, 0, 0, 0))
-            if not self._in_live_region(bounds, window_size):
+            left, top, right, bottom = bounds
+            if right <= left or bottom <= top:
                 continue
-            candidates.append(TextNode(text=text, bounds=bounds))
+            intersects = not (
+                right <= left_limit
+                or right_limit <= left
+                or bottom <= top_limit
+                or bottom_limit <= top
+            )
+            if not intersects:
+                continue
+            key = (text, (left, top, right, bottom))
+            if key in seen:
+                continue
+            seen.add(key)
+            texts.append(text)
 
-        return sorted(candidates, key=lambda item: (item.center_y, item.center_x))
+        return texts
 
-    def _extract_new_lines_by_spatial(self, current_nodes: list[TextNode], now_ts: float) -> list[str]:
-        new_lines: list[str] = []
+    def _collect_pk_status(self, device) -> tuple[str, int | None]:
+        try:
+            node = device.xpath(f'//*[@resource-id="{PK_STATUS_RESOURCE_ID}"]').get(timeout=2)
+        except Exception:
+            return "", None
 
-        for node in current_nodes:
-            text = node.text
-            current_y = node.center_y
-            history = self.state.recent_items.get(text, [])
+        text = normalize_text(getattr(node, "text", ""))
+        if not text:
+            return "", None
+        if any(keyword in text for keyword in PK_STATUS_EXCLUDE_KEYWORDS):
+            return text, None
 
-            appears_lower = bool(history) and current_y > max(record["y"] for record in history) + self.y_tolerance
+        match = PK_TIME_PATTERN.search(text)
+        if not match:
+            return text, None
 
-            if not history or appears_lower:
-                new_lines.append(text)
+        minute = int(match.group(1))
+        second = int(match.group(2))
+        if not (0 <= minute <= 10 and 0 <= second < 60):
+            return text, None
+        return text, minute * 60 + second
 
-            updated_history = history + [{"y": current_y, "ts": now_ts}]
-            self.state.recent_items[text] = updated_history[-20:]
+    def _collect_welcome_nodes(self, device) -> list[dict[str, object]]:
+        try:
+            nodes = device.xpath(f'//*[@resource-id="{WELCOME_RESOURCE_ID}"]').all()
+        except Exception:
+            return []
 
-        return new_lines
+        items: list[dict[str, object]] = []
+        seen: set[tuple[str, tuple[int, int, int, int], str]] = set()
+
+        for node in nodes:
+            text = normalize_text(getattr(node, "text", ""))
+            if not text:
+                continue
+            bounds = getattr(node, "bounds", (0, 0, 0, 0))
+            left, top, right, bottom = bounds
+            if right <= left or bottom <= top:
+                continue
+            info = getattr(node, "info", None) or {}
+            resource_id = info.get("resourceName") or info.get("resourceId") or ""
+            class_name = info.get("className") or info.get("class") or "android.widget.TextView"
+            key = (text, (left, top, right, bottom), resource_id)
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append(
+                {
+                    "text": text,
+                    "bounds": [left, top, right, bottom],
+                    "resource_id": resource_id,
+                    "class": class_name,
+                }
+            )
+
+        return items
 
     def collect(self, device) -> Frame:
         now_ts = time.time()
-        self._cleanup(now_ts)
-
-        current_nodes = self._collect_textview_nodes(device)
-        raw_lines = [node.text for node in current_nodes]
-        real_new_lines = self._extract_new_lines_by_spatial(current_nodes, now_ts)
-        return Frame(ts=now_ts, raw_lines=raw_lines, lines=real_new_lines)
+        gift_lines = self._collect_region_texts(device, GIFT_THANKS_REGION)
+        welcome_nodes = self._collect_welcome_nodes(device)
+        pk_status_text, pk_seconds = self._collect_pk_status(device)
+        return Frame(
+            ts=now_ts,
+            gift_lines=gift_lines,
+            welcome_nodes=welcome_nodes,
+            pk_status_text=pk_status_text,
+            pk_seconds=pk_seconds,
+        )
