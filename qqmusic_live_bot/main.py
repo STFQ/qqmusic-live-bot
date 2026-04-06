@@ -29,10 +29,13 @@ class LiveBotApp:
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
+            device_addr=self.config.device_addr,
         )
         self.parser = EventParser()
         self.scheduler = Scheduler(self.config.flags, self.config.limits)
         self.state = BotState(mode=self.config.mode)
+        # Event-like gift processing: only handle gift lines when region content changes.
+        self._last_gift_signature: tuple[str, ...] = ()
 
         # 消息队列：用于主抓取线程和发送线程之间传递要发送的弹幕
         self.action_queue = queue.Queue(maxsize=int(self.config.limits["queue_maxsize"]))
@@ -169,15 +172,22 @@ class LiveBotApp:
             while self.is_running:
                 try:
                     frame = self.collector.collect(device)
-                    for index, line in enumerate(frame.gift_lines):
-                        self.logger.gift_lines(
-                            {
-                                "ts": frame.ts,
-                                "type": "gift_region_text",
-                                "index": index,
-                                "text": line,
-                            }
-                        )
+                    gift_signature = tuple(frame.gift_lines)
+                    gift_changed = gift_signature != self._last_gift_signature
+                    if gift_changed:
+                        self._last_gift_signature = gift_signature
+                        for index, line in enumerate(frame.gift_lines):
+                            self.logger.gift_lines(
+                                {
+                                    "ts": frame.ts,
+                                    "type": "gift_region_text",
+                                    "index": index,
+                                    "text": line,
+                                }
+                            )
+                    else:
+                        # Keep other features unchanged; only gift source becomes change-driven.
+                        frame.gift_lines = []
                     self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
 
                     events = self.parser.parse(frame)
