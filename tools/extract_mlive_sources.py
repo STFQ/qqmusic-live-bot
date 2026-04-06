@@ -257,6 +257,28 @@ def extract_barrage_candidates(text: str):
     return dedupe(out)
 
 
+def extract_barrage_blocks(text: str):
+    rows = []
+    idx = 0
+    while True:
+        i = text.find("IMBarrageInfo", idx)
+        if i < 0:
+            break
+        s = max(0, i - 260)
+        e = min(len(text), i + 80)
+        snippet = text[s:e].replace("\n", " ")
+        rows.append(
+            {
+                "type": "barrage_block",
+                "source": "network_raw_block",
+                "marker_offset": i,
+                "snippet": snippet,
+            }
+        )
+        idx = i + 1
+    return rows
+
+
 def write_jsonl(path: Path, rows: list[dict], append: bool = False):
     path.parent.mkdir(parents=True, exist_ok=True)
     mode = "a" if append else "w"
@@ -336,6 +358,7 @@ def main():
     gifts = []
     pk_markers = []
     candidates = []
+    blocks = []
 
     txt = blob.decode("utf-8", errors="ignore")
     now = time.time()
@@ -362,18 +385,25 @@ def main():
         row["offset_start"] = prev_offset
         row["offset_end"] = new_offset
         candidates.append(row)
+    for row in extract_barrage_blocks(txt):
+        row["ts"] = now
+        row["offset_start"] = prev_offset
+        row["offset_end"] = new_offset
+        blocks.append(row)
 
     welcomes = dedupe(welcomes)
     barrages = dedupe(barrages)
     gifts = dedupe(gifts)
     pk_markers = dedupe(pk_markers)
     candidates = dedupe(candidates)
+    blocks = dedupe(blocks)
 
     write_jsonl(out_dir / "reverse_welcome_from_network.jsonl", welcomes, append=True)
     write_jsonl(out_dir / "reverse_barrage_from_network.jsonl", barrages, append=True)
     write_jsonl(out_dir / "reverse_gift_from_network.jsonl", gifts, append=True)
     write_jsonl(out_dir / "reverse_pk_from_network.jsonl", pk_markers, append=True)
     write_jsonl(out_dir / "reverse_barrage_candidates.jsonl", candidates, append=True)
+    write_jsonl(out_dir / "reverse_barrage_blocks.jsonl", blocks, append=True)
 
     state["remote_path"] = remote
     state["offset"] = new_offset
@@ -381,7 +411,7 @@ def main():
     save_state(state_path, state)
 
     print(
-        f"[summary] welcome={len(welcomes)} barrage={len(barrages)} gift={len(gifts)} pk={len(pk_markers)} candidate={len(candidates)}"
+        f"[summary] welcome={len(welcomes)} barrage={len(barrages)} gift={len(gifts)} pk={len(pk_markers)} candidate={len(candidates)} blocks={len(blocks)}"
     )
 
 

@@ -19,14 +19,14 @@
       ]
     },
     "Cavalier": {
-      "gift_count": 177,
+      "gift_count": 181,
       "chat_count": 0,
       "notes": [
+        "welcome:Cavalier",
         "gift:Cavalier:爱心:1",
-        "gift:Cavalier:春苗:12",
-        "gift:Cavalier:魔力水晶:1",
-        "gift:Cavalier:魔力水晶:1",
-        "gift:Cavalier:爱恋相机:1"
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:爱心:1",
+        "gift:Cavalier:爱心:1"
       ]
     },
     ".. 赠": {
@@ -105,14 +105,14 @@
       ]
     },
     "小煤球": {
-      "gift_count": 13,
+      "gift_count": 14,
       "chat_count": 0,
       "notes": [
-        "gift:小煤球:爱心:1",
         "gift:小煤球:饭团:3",
         "gift:小煤球:饭团:58",
         "gift:小煤球:打call:1",
-        "gift:小煤球:爱心:1"
+        "gift:小煤球:爱心:1",
+        "gift:小煤球:星火:1"
       ]
     },
     "噔噔蹬蹬": {
@@ -553,6 +553,7 @@
       "chat_count": 0,
       "notes": [
         "welcome:丿小李丶",
+        "welcome:丿小李丶",
         "welcome:丿小李丶"
       ]
     },
@@ -648,6 +649,7 @@
       "chat_count": 0,
       "notes": [
         "welcome:我想喝鲜榨岑汁c",
+        "welcome:我想喝鲜榨岑汁c",
         "welcome:我想喝鲜榨岑汁c"
       ]
     },
@@ -670,6 +672,7 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:小小鱼宝o",
         "welcome:小小鱼宝o",
         "welcome:小小鱼宝o"
       ]
@@ -1057,14 +1060,14 @@
       ]
     },
     "你家鱼哥ya": {
-      "gift_count": 13,
+      "gift_count": 16,
       "chat_count": 0,
       "notes": [
-        "gift:你家鱼哥ya:挚爱玫瑰:10",
-        "gift:你家鱼哥ya:打call:2",
+        "gift:你家鱼哥ya:饭团:30",
+        "welcome:你家鱼哥ya",
+        "gift:你家鱼哥ya:饭团:250",
         "gift:你家鱼哥ya:爱心:1",
-        "gift:你家鱼哥ya:爱心:1",
-        "gift:你家鱼哥ya:饭团:30"
+        "gift:你家鱼哥ya:春苗:1"
       ]
     },
     "沈砚冰、‭⁧‭⁧~❤️‍..⁧‭⁧‭": {
@@ -1683,10 +1686,11 @@
       ]
     },
     "尼亚ˣʸ": {
-      "gift_count": 0,
+      "gift_count": 1,
       "chat_count": 0,
       "notes": [
-        "welcome:尼亚ˣʸ"
+        "welcome:尼亚ˣʸ",
+        "gift:尼亚ˣʸ:饭团:30"
       ]
     },
     "-Cindy_77": {
@@ -3154,6 +3158,8 @@
       "gift_count": 0,
       "chat_count": 0,
       "notes": [
+        "welcome:网友且慢",
+        "welcome:网友且慢",
         "welcome:网友且慢"
       ]
     },
@@ -3471,6 +3477,698 @@
       "chat_count": 0,
       "notes": [
         "welcome:战斗"
+      ]
+    },
+    "不是衔月哦～": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:不是衔月哦～"
+      ]
+    },
+    "小孩Pro Max": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小孩Pro Max",
+        "gift:小孩Pro Max:爱心:1"
+      ]
+    },
+    "阮": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:阮"
+      ]
+    },
+    "ㅤㅤ别后": {
+      "gift_count": 6,
+      "chat_count": 0,
+      "notes": [
+        "gift:ㅤㅤ别后:饭团:50",
+        "gift:ㅤㅤ别后:爱恋相机:1",
+        "gift:ㅤㅤ别后:饭团:3",
+        "gift:ㅤㅤ别后:烟花的季节:1",
+        "gift:ㅤㅤ别后:饭团:60"
+      ]
+    },
+    "时差•": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:时差•"
+      ]
+    },
+    "一π胡言": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:一π胡言"
+      ]
+    },
+    "......蓝莓酱": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:......蓝莓酱"
+      ]
+    },
+    "『温柔＆橘祠』": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:『温柔＆橘祠』"
+      ]
+    },
+    "拜神不如拜仁": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:拜神不如拜仁:饭团:8",
+        "gift:拜神不如拜仁:天鹅之恋:1",
+        "gift:拜神不如拜仁:了价值0饭票的红包，点击红包挂件抢红包:1"
+      ]
+    },
+    "乌鸡哥": {
+      "gift_count": 3,
+      "chat_count": 0,
+      "notes": [
+        "gift:乌鸡哥:刷我滴卡:1",
+        "gift:乌鸡哥:翠竹新生:1",
+        "gift:乌鸡哥:刷我滴卡:1"
+      ]
+    },
+    "七群夜间守护神": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:七群夜间守护神"
+      ]
+    },
+    "阿银好想赢": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:阿银好想赢"
+      ]
+    },
+    "公司的国际": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:公司的国际"
+      ]
+    },
+    "房产丨快讯大管家": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:房产丨快讯大管家"
+      ]
+    },
+    "麋鹿的奶粉": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:麋鹿的奶粉"
+      ]
+    },
+    "真的会上瘾": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:真的会上瘾"
+      ]
+    },
+    "高": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:高"
+      ]
+    },
+    "输出担当武志炫": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:输出担当武志炫"
+      ]
+    },
+    "只爱小呆呆": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:只爱小呆呆"
+      ]
+    },
+    "军事器材孙十万": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:军事器材孙十万"
+      ]
+    },
+    "玲玲": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:玲玲"
+      ]
+    },
+    "小八想中奖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小八想中奖"
+      ]
+    },
+    "随性就好小夏": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:随性就好小夏"
+      ]
+    },
+    "黑眼勋章": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:黑眼勋章",
+        "welcome:黑眼勋章"
+      ]
+    },
+    "天52092": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:天52092"
+      ]
+    },
+    "介不猴": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:介不猴"
+      ]
+    },
+    "侯诚信": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:侯诚信",
+        "welcome:侯诚信",
+        "welcome:侯诚信"
+      ]
+    },
+    "寂寞先生230": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:寂寞先生230"
+      ]
+    },
+    "黑月的潮": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:黑月的潮",
+        "welcome:黑月的潮"
+      ]
+    },
+    "云游四海2": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:云游四海2"
+      ]
+    },
+    "发生纠纷时": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:发生纠纷时"
+      ]
+    },
+    "秋丶萧": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:秋丶萧",
+        "welcome:秋丶萧",
+        "welcome:秋丶萧"
+      ]
+    },
+    "我不是烂人丶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:我不是烂人丶"
+      ]
+    },
+    "好哥们昵称违规": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:好哥们昵称违规"
+      ]
+    },
+    "o黑0黑O黑": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:o黑0黑O黑"
+      ]
+    },
+    "最爱艾希": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:最爱艾希",
+        "welcome:最爱艾希",
+        "welcome:最爱艾希",
+        "welcome:最爱艾希"
+      ]
+    },
+    "是清玖啊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:是清玖啊",
+        "welcome:是清玖啊"
+      ]
+    },
+    "超超级无敌暴龙兽": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:超超级无敌暴龙兽"
+      ]
+    },
+    "佐拉Alpaca": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:佐拉Alpaca",
+        "welcome:佐拉Alpaca"
+      ]
+    },
+    "是你丶益达": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:是你丶益达"
+      ]
+    },
+    "郭敖那多小奥普利龙": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:郭敖那多小奥普利龙"
+      ]
+    },
+    "沐5神": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:沐5神"
+      ]
+    },
+    "好哥们jiwon本人": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:好哥们jiwon本人"
+      ]
+    },
+    "狸萱": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:狸萱"
+      ]
+    },
+    "派小猩xsl": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:派小猩xsl",
+        "welcome:派小猩xsl",
+        "welcome:派小猩xsl",
+        "welcome:派小猩xsl"
+      ]
+    },
+    "大乐乐611": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:大乐乐611"
+      ]
+    },
+    "大帝在哥伦比亚的前妻": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:大帝在哥伦比亚的前妻"
+      ]
+    },
+    "老千层饼019": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:老千层饼019"
+      ]
+    },
+    "叨几": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:叨几:刷我滴卡:1"
+      ]
+    },
+    "芙蓉王源10": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:芙蓉王源10"
+      ]
+    },
+    "忠诚禹2号": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:忠诚禹2号"
+      ]
+    },
+    "龟龟的远房亲戚": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:龟龟的远房亲戚"
+      ]
+    },
+    "欧润橘Oooo": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:欧润橘Oooo"
+      ]
+    },
+    "爱吃橙子的蛋": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:爱吃橙子的蛋"
+      ]
+    },
+    "可别投入": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:可别投入",
+        "welcome:可别投入"
+      ]
+    },
+    "演技v": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:演技v"
+      ]
+    },
+    "沉珂烂志": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:沉珂烂志"
+      ]
+    },
+    "一般专心": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:一般专心",
+        "welcome:一般专心",
+        "welcome:一般专心",
+        "welcome:一般专心"
+      ]
+    },
+    "少年没有乌托邦17289": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:少年没有乌托邦17289"
+      ]
+    },
+    "小淳不睡": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:小淳不睡",
+        "welcome:小淳不睡"
+      ]
+    },
+    "糕手是小颜": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:糕手是小颜"
+      ]
+    },
+    "逝风Orz": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:逝风Orz",
+        "welcome:逝风Orz"
+      ]
+    },
+    "Edib南空": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:Edib南空"
+      ]
+    },
+    "兰芙乐": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:兰芙乐",
+        "welcome:兰芙乐"
+      ]
+    },
+    "梦灬为发成魂": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:梦灬为发成魂"
+      ]
+    },
+    "大温柔6p": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:大温柔6p"
+      ]
+    },
+    "游戏人生489": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:游戏人生489"
+      ]
+    },
+    "ᶠˣˣ打嗝海狸..️": {
+      "gift_count": 2,
+      "chat_count": 0,
+      "notes": [
+        "gift:ᶠˣˣ打嗝海狸..️:气球花花:1",
+        "gift:ᶠˣˣ打嗝海狸..️:饭团:31"
+      ]
+    },
+    "哑剧": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:哑剧"
+      ]
+    },
+    "一只潺潺....（5月见）只打仙域": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:一只潺潺....（5月见）只打仙域:饭团:66"
+      ]
+    },
+    "渐远渐远～": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:渐远渐远～"
+      ]
+    },
+    "..草莓糖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:..草莓糖"
+      ]
+    },
+    "南海有鸢": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:南海有鸢"
+      ]
+    },
+    "啊哈哈": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:啊哈哈"
+      ]
+    },
+    "所以咩係愛呢": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:所以咩係愛呢:饭团:52"
+      ]
+    },
+    "人": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "welcome:人",
+        "gift:人:星沈花楼:1"
+      ]
+    },
+    "伊霖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:伊霖"
+      ]
+    },
+    "不会翻跟斗的马喽": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:不会翻跟斗的马喽"
+      ]
+    },
+    "EAoK4z7Kos7ink7i4k7v**2ՅF小八想中奖": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:EAoK4z7Kos7ink7i4k7v**2ՅF小八想中奖",
+        "welcome:EAoK4z7Kos7ink7i4k7v**2ՅF小八想中奖"
+      ]
+    },
+    "K4z7Kos7KokNe-ioz**2ՅF我想喝鲜榨岑汁c": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:K4z7Kos7KokNe-ioz**2ՅF我想喝鲜榨岑汁c"
+      ]
+    },
+    "oK4z7Kos7ink7iCPNn**2ՅF龟龟的远房亲戚": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:oK4z7Kos7ink7iCPNn**2ՅF龟龟的远房亲戚"
+      ]
+    },
+    "EAoK4z7Kos7KokNe-ioc**2ՅF小小鱼宝o": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:EAoK4z7Kos7KokNe-ioc**2ՅF小小鱼宝o"
+      ]
+    },
+    "EAoK4z7Kos7ink7iCAov**2ՅF偶系金傲天": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:EAoK4z7Kos7ink7iCAov**2ՅF偶系金傲天"
+      ]
+    },
+    "oK4z7Kos7KokNe6q7v**2ՅF满身薄雪压星河": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:oK4z7Kos7KokNe6q7v**2ՅF满身薄雪压星河",
+        "welcome:oK4z7Kos7KokNe6q7v**2ՅF满身薄雪压星河"
+      ]
+    },
+    "AoK4z7Kos7ink7iSA7z**2ՅF我不是烂人丶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:AoK4z7Kos7ink7iSA7z**2ՅF我不是烂人丶"
+      ]
+    },
+    "EAoK4z7Kos7ink7i4lov**2ՅF发生纠纷时": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:EAoK4z7Kos7ink7i4lov**2ՅF发生纠纷时"
+      ]
+    },
+    "AoK4z7Kos7ink7iCz7n**2ՅF梦灬为发成魂": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:AoK4z7Kos7ink7iCz7n**2ՅF梦灬为发成魂"
+      ]
+    },
+    "EAoK4z7Kos7ink7i4k7n**2ՅF麋鹿的奶粉": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:EAoK4z7Kos7ink7i4k7n**2ՅF麋鹿的奶粉"
+      ]
+    },
+    "oK4z7Kos7e4Aoeosoc**2ՅF浊酒醉意留风尘": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:oK4z7Kos7e4Aoeosoc**2ՅF浊酒醉意留风尘"
+      ]
+    },
+    "TeaTii茶": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:TeaTii茶"
+      ]
+    },
+    "林峰🍊": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:林峰🍊"
+      ]
+    },
+    "清晰抚琴": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:清晰抚琴"
+      ]
+    },
+    "JSA丶中介": {
+      "gift_count": 0,
+      "chat_count": 0,
+      "notes": [
+        "welcome:JSA丶中介"
+      ]
+    },
+    "艾老板": {
+      "gift_count": 1,
+      "chat_count": 0,
+      "notes": [
+        "gift:艾老板:花仙幻梦:1"
       ]
     }
   },
