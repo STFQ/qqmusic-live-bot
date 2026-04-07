@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 
 import queue
+import sys
 import threading
 import time
 from pathlib import Path
@@ -19,13 +20,17 @@ from .strategy.filters import trim_gift_reply, trim_reply
 
 class LiveBotApp:
     def __init__(self) -> None:
-        self.root = Path(__file__).resolve().parent
+        # 🔪 [核心修复] 判断是不是 EXE 运行。把数据牢牢保存在 EXE 旁边！
+        if getattr(sys, 'frozen', False):
+            self.root = Path(sys.executable).parent / "qqmusic_live_bot"
+        else:
+            self.root = Path(__file__).resolve().parent
+
         self.config = load_runtime_config(self.root)
+
         self.logger = BotLogger(
             self.root / "data" / "logs",
-            console_output=bool(self.config.logging.get("console_output", True)),
-            # 🔪 [新增] 读取配置里的开关，传给 Logger
-            file_output=bool(self.config.logging.get("file_output", False)),
+            console_output=bool(self.config.logging["console_output"]),
         )
         # self.memory = MemoryService(self.root / "data" / "memory.json")
         self.collector = TextCollector(

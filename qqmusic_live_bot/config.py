@@ -46,6 +46,9 @@ DEFAULT_CONFIG = {
 def load_runtime_config(root: Path) -> RuntimeConfig:
     config_path = root / "data" / "config.json"
     if not config_path.exists():
+        # 🔪 [新增] 必须先让代码把 data 文件夹建出来！否则会报错！
+        config_path.parent.mkdir(parents=True, exist_ok=True)
+
         config_path.write_text(json.dumps(DEFAULT_CONFIG, ensure_ascii=False, indent=2), encoding="utf-8")
         data = DEFAULT_CONFIG
     else:
