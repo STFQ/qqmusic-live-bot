@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 
 import queue
+import sys
 import threading
 import time
 from pathlib import Path
@@ -13,19 +14,24 @@ from .core.scheduler import Scheduler
 from .core.sender import MessageSender
 from .core.state import BotState
 from .services.logger import BotLogger
-from .services.storage import MemoryService
 from .strategy.filters import trim_gift_reply, trim_reply
 
 
 class LiveBotApp:
     def __init__(self) -> None:
-        self.root = Path(__file__).resolve().parent
+        if getattr(sys, 'frozen', False):
+            self.root = Path(sys.executable).parent / "qqmusic_live_bot"
+        else:
+            self.root = Path(__file__).resolve().parent
+
         self.config = load_runtime_config(self.root)
+
         self.logger = BotLogger(
             self.root / "data" / "logs",
-            console_output=bool(self.config.logging["console_output"]),
+            console_output=bool(self.config.logging.get("console_output", True)),
+            file_output=bool(self.config.logging.get("file_output", False)),
         )
-        self.memory = MemoryService(self.root / "data" / "memory.json")
+
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
@@ -34,7 +40,6 @@ class LiveBotApp:
         self.scheduler = Scheduler(self.config.flags, self.config.limits)
         self.state = BotState(mode=self.config.mode)
 
-        # 消息队列：用于主抓取线程和发送线程之间传递要发送的弹幕
         self.action_queue = queue.Queue(maxsize=int(self.config.limits["queue_maxsize"]))
         self.is_running = False
         self._last_queue_warn_ts = 0.0
@@ -98,7 +103,6 @@ class LiveBotApp:
         while self.is_running or not self.action_queue.empty():
             try:
                 task = self.action_queue.get(timeout=1.0)
-
             except queue.Empty:
                 continue
 
@@ -120,10 +124,6 @@ class LiveBotApp:
                 if success:
                     now_ts = time.time()
                     self.state.mark_sent(action.event_type, now_ts, dedupe_key)
-
-                    if action.user:
-                        self.memory.touch_user(action.user, action.event_type, action.raw or text)
-
                     self.logger.info(f"发送成功 [{action.reason}] -> {text}")
                 else:
                     retry_limit = int(self.config.limits["send_retry_limit"])
@@ -138,7 +138,6 @@ class LiveBotApp:
                 self.state.unmark_queued(dedupe_key)
                 self.logger.info(f"发送动作异常: {e}")
                 time.sleep(0.3)
-
             finally:
                 self.action_queue.task_done()
 
@@ -157,10 +156,9 @@ class LiveBotApp:
             fallback_send_y=2697.5,
         )
         self.logger.info(
-            f"稳定版 V1 已启动(双线程极速版) | mode={self.state.mode} | dry_run={self.config.dry_run} | device={self.config.device_addr}"
+            f"直播助手已启动 | mode={self.state.mode} | dry_run={self.config.dry_run}"
         )
 
-        # 启动后台发送线程
         self.is_running = True
         sender_thread = threading.Thread(target=self._sender_thread_worker, args=(sender,), daemon=True)
         sender_thread.start()
@@ -169,21 +167,13 @@ class LiveBotApp:
             while self.is_running:
                 try:
                     frame = self.collector.collect(device)
-                    for index, line in enumerate(frame.gift_lines):
-                        self.logger.gift_lines(
-                            {
-                                "ts": frame.ts,
-                                "type": "gift_region_text",
-                                "index": index,
-                                "text": line,
-                            }
-                        )
                     self.state.cleanup(frame.ts, ttl=float(self.config.limits["dedupe_ttl"]))
 
                     events = self.parser.parse(frame)
                     if not events:
                         time.sleep(float(self.config.limits["main_loop_interval"]))
                         continue
+
                     fresh_events = []
                     latest_pk_event = None
                     for event in events:
@@ -193,21 +183,17 @@ class LiveBotApp:
                             continue
                         self.state.seen_event_fingerprints[event.fingerprint] = frame.ts
                         fresh_events.append(event)
-                        if event.type.value == "pk_timer" and self.config.logging["pk_time"]:
-                            self.logger.info(f"[PK_TIME] seconds={event.meta.get('seconds', event.content)} raw={event.raw}")
-                        self.logger.event(
-                            {
-                                "ts": frame.ts,
-                                "type": event.type.value,
-                                "user": event.user,
-                                "content": event.content,
-                                "count": event.count,
-                                "raw": event.raw,
-                            }
-                        )
+
+                        self.logger.event({
+                            "ts": frame.ts,
+                            "type": event.type.value,
+                            "user": event.user,
+                            "content": event.content,
+                            "raw": event.raw,
+                        })
 
                     scheduler_events = list(fresh_events)
-                    if latest_pk_event and all(event.type.value != "pk_timer" for event in scheduler_events):
+                    if latest_pk_event and all(e.type.value != "pk_timer" for e in scheduler_events):
                         scheduler_events.append(latest_pk_event)
 
                     action = self.scheduler.next_action(frame, scheduler_events, self.state)
@@ -224,7 +210,6 @@ class LiveBotApp:
                     self._enqueue_action(action, text, time.time())
 
                 except KeyboardInterrupt:
-                    self.logger.info("已手动停止，正在关闭...")
                     self.is_running = False
                     break
                 except Exception as exc:
@@ -233,7 +218,6 @@ class LiveBotApp:
         finally:
             self.is_running = False
             sender_thread.join(timeout=3.0)
-            self.memory.flush()
 
 
 def main() -> None:

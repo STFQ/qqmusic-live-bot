@@ -10,7 +10,8 @@ from .strategy.rules import FEATURE_FLAGS, LIMITS
 
 
 DEFAULT_LOGGING = {
-    "console_output": False,
+    "console_output": True,
+    "file_output": False,  # 🔪 新增：默认关闭日志落盘
     "pk_time": False,
     "dry_run": False,
 }
@@ -45,6 +46,7 @@ DEFAULT_CONFIG = {
 def load_runtime_config(root: Path) -> RuntimeConfig:
     config_path = root / "data" / "config.json"
     if not config_path.exists():
+        config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text(json.dumps(DEFAULT_CONFIG, ensure_ascii=False, indent=2), encoding="utf-8")
         data = DEFAULT_CONFIG
     else:
