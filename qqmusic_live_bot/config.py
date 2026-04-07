@@ -10,7 +10,8 @@ from .strategy.rules import FEATURE_FLAGS, LIMITS
 
 
 DEFAULT_LOGGING = {
-    "console_output": False,
+    "console_output": True,  # 建议控制台输出开着，不然你不知道机器人在干嘛
+    "file_output": False,    # 🔪 [新增] 默认不把日志写到硬盘里
     "pk_time": False,
     "dry_run": False,
 }
@@ -30,10 +31,10 @@ class RuntimeConfig:
 
 
 DEFAULT_CONFIG = {
-    "device_addr": "127.0.0.1:7555",
-    "input_box_x": 159,
-    "input_box_y": 1418,
-    "dry_run": True,
+    "device_addr": "127.0.0.1:5565",
+    "input_box_x": 174,
+    "input_box_y": 2649,
+    "dry_run": False,
     "mode": "auto",
     "profile": BOT_PROFILE,
     "flags": FEATURE_FLAGS,

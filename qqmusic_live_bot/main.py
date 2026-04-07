@@ -13,7 +13,7 @@ from .core.scheduler import Scheduler
 from .core.sender import MessageSender
 from .core.state import BotState
 from .services.logger import BotLogger
-from .services.storage import MemoryService
+# from .services.storage import MemoryService
 from .strategy.filters import trim_gift_reply, trim_reply
 
 
@@ -23,9 +23,11 @@ class LiveBotApp:
         self.config = load_runtime_config(self.root)
         self.logger = BotLogger(
             self.root / "data" / "logs",
-            console_output=bool(self.config.logging["console_output"]),
+            console_output=bool(self.config.logging.get("console_output", True)),
+            # 🔪 [新增] 读取配置里的开关，传给 Logger
+            file_output=bool(self.config.logging.get("file_output", False)),
         )
-        self.memory = MemoryService(self.root / "data" / "memory.json")
+        # self.memory = MemoryService(self.root / "data" / "memory.json")
         self.collector = TextCollector(
             line_ttl=float(self.config.limits["collector_line_ttl"]),
             y_tolerance=float(self.config.limits["collector_y_tolerance"]),
@@ -121,8 +123,8 @@ class LiveBotApp:
                     now_ts = time.time()
                     self.state.mark_sent(action.event_type, now_ts, dedupe_key)
 
-                    if action.user:
-                        self.memory.touch_user(action.user, action.event_type, action.raw or text)
+                    # if action.user:
+                    #     self.memory.touch_user(action.user, action.event_type, action.raw or text)
 
                     self.logger.info(f"发送成功 [{action.reason}] -> {text}")
                 else:
@@ -233,7 +235,7 @@ class LiveBotApp:
         finally:
             self.is_running = False
             sender_thread.join(timeout=3.0)
-            self.memory.flush()
+            # self.memory.flush()
 
 
 def main() -> None:
