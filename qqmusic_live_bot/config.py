@@ -19,10 +19,10 @@ DEFAULT_LOGGING = {
 
 @dataclass
 class RuntimeConfig:
-    device_addr: str = "127.0.0.1:7555"
-    input_box_x: int = 159
-    input_box_y: int = 1418
-    dry_run: bool = True
+    device_addr: str = "127.0.0.1:5565"
+    input_box_x: int = 174
+    input_box_y: int = 2649
+    dry_run: bool = False
     mode: str = "auto"
     profile: dict[str, Any] = field(default_factory=lambda: dict(BOT_PROFILE))
     flags: dict[str, bool] = field(default_factory=lambda: dict(FEATURE_FLAGS))
@@ -31,10 +31,10 @@ class RuntimeConfig:
 
 
 DEFAULT_CONFIG = {
-    "device_addr": "127.0.0.1:7555",
-    "input_box_x": 159,
-    "input_box_y": 1418,
-    "dry_run": True,
+    "device_addr": "127.0.0.1:5565",
+    "input_box_x": 174,
+    "input_box_y": 2649,
+    "dry_run": False,
     "mode": "auto",
     "profile": BOT_PROFILE,
     "flags": FEATURE_FLAGS,
