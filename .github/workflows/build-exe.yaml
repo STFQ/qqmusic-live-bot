@@ -3,7 +3,7 @@ name: Build Windows EXE
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch:
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击运行
 
 # 🔪 核心优化 1：强制启用 Node 24 环境，彻底消除旧版本即将弃用的黄色警告
 env:
@@ -26,16 +26,25 @@ jobs:
     - name: Install Dependencies (安装依赖)
       run: |
         python -m pip install --upgrade pip setuptools wheel
-        pip install -r requirements.txt
+        # 打印当前目录列表，用于在日志中排查文件位置问题
+        ls -R
+        # 优先从根目录安装，如果失败则尝试手动安装核心库
+        if (Test-Path "requirements.txt") {
+          pip install -r requirements.txt
+        } else {
+          Write-Host "警告: 根目录未找到 requirements.txt，执行手动保底安装..."
+          pip install uiautomator2 pillow requests lxml
+        }
         pip install pyinstaller
 
     - name: Build with PyInstaller (极致瘦身打包)
       run: |
+        # 参数解析：
         # --onefile: 打成单文件 exe
         # --clean: 清除缓存防止幽灵 Bug
         # --name: 指定生成的软件名字
-        # --collect-data: 强制打包 uiautomator2 底层资源（必填，否则运行报错）
-        # --exclude-module: 强制封杀没用的库，实现极致瘦身
+        # --collect-data: 强制打包 uiautomator2 底层通讯用的 jar 和 apk（解决 u2.jar 缺失报错）
+        # --exclude-module: 强制封杀没用的标准库和常见大型库，实现极致瘦身
         pyinstaller --onefile --clean --name QQMusicLiveBot \
                     --collect-data uiautomator2 \
                     --exclude-module tkinter \
@@ -48,7 +57,7 @@ jobs:
                     --exclude-module PIL.ImageQt \
                     run_v1_bot.py
 
-    - name: Upload Artifact (上传生成的 EXE)
+    - name: Upload Artifact (上传生成的 EXE 供下载)
       uses: actions/upload-artifact@v4
       with:
         name: QQMusic-Live-Bot-Windows-x64
