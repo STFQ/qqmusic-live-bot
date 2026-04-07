@@ -5,7 +5,7 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch: # 允许在 GitHub 网页上手动点击运行
 
-# 🔪 核心优化：强制启用 Node 24 环境，彻底消除 Node 20 即将弃用的黄色警告
+# 🔪 核心优化 1：强制启用 Node 24 环境，彻底消除旧版本即将弃用的黄色警告
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python (配置 Python 环境)
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10' # 这里的版本跟你本地开发环境对齐
+        python-version: '3.10'
         cache: 'pip'
 
     - name: Install Dependencies (安装依赖)
@@ -29,12 +29,15 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
 
-    - name: Build with PyInstaller (执行纯净打包)
+    - name: Build with PyInstaller (执行纯净、极致瘦身打包)
       run: |
+        # 参数解析：
         # --onefile: 打成单文件 exe
         # --clean: 清除缓存防止幽灵 Bug
         # --name: 指定生成的软件名字
-        pyinstaller --onefile --clean --name QQMusicLiveBot run_v1_bot.py
+        # 🔪 核心优化 2：--collect-data 强制打包 uiautomator2 底层通讯用的 jar 和 apk（解决你的报错）
+        # 🔪 核心优化 3：--exclude-module 强制封杀没用的标准库和常见大型库，实现极致瘦身
+        pyinstaller --onefile --clean --name QQMusicLiveBot --collect-data uiautomator2 --exclude-module tkinter --exclude-module pandas --exclude-module numpy --exclude-module matplotlib --exclude-module PyQt5 --exclude-module IPython run_v1_bot.py
 
     - name: Upload Artifact (上传生成的 EXE 供下载)
       uses: actions/upload-artifact@v4
