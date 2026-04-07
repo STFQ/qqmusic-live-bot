@@ -1,0 +1,55 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+# 🔪 核心优化 1：强制启用 Node 24 环境，彻底消除旧版本即将弃用的黄色警告
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code (拉取代码)
+      uses: actions/checkout@v4
+
+    - name: Set up Python (配置 Python 环境)
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    - name: Install Dependencies (安装依赖)
+      run: |
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Build with PyInstaller (极致瘦身打包)
+      run: |
+        # --onefile: 打成单文件 exe
+        # --clean: 清除缓存防止幽灵 Bug
+        # --name: 指定生成的软件名字
+        # --collect-data: 强制打包 uiautomator2 底层资源（必填，否则运行报错）
+        # --exclude-module: 强制封杀没用的库，实现极致瘦身
+        pyinstaller --onefile --clean --name QQMusicLiveBot \
+                    --collect-data uiautomator2 \
+                    --exclude-module tkinter \
+                    --exclude-module pandas \
+                    --exclude-module numpy \
+                    --exclude-module matplotlib \
+                    --exclude-module PyQt5 \
+                    --exclude-module IPython \
+                    --exclude-module notebook \
+                    --exclude-module PIL.ImageQt \
+                    run_v1_bot.py
+
+    - name: Upload Artifact (上传生成的 EXE)
+      uses: actions/upload-artifact@v4
+      with:
+        name: QQMusic-Live-Bot-Windows-x64
+        path: dist/QQMusicLiveBot.exe
