@@ -2,12 +2,16 @@ name: Build Windows EXE
 
 on:
   push:
-    branches: [ "main", "master" ] # 当推送到 main 或 master 分支时触发
-  workflow_dispatch: # 允许你在 GitHub 网页上通过按钮手动触发
+    branches: [ "main", "master" ]
+  workflow_dispatch: # 允许在 GitHub 网页上手动点击运行
+
+# 🔪 核心优化：强制启用 Node 24 环境，彻底消除 Node 20 即将弃用的黄色警告
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
-    runs-on: windows-latest # 核心：分配一台最新的 Windows 云服务器
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Code (拉取代码)
@@ -16,24 +20,23 @@ jobs:
     - name: Set up Python (配置 Python 环境)
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10' # 与你本地开发环境保持一致
+        python-version: '3.10' # 这里的版本跟你本地开发环境对齐
         cache: 'pip'
 
     - name: Install Dependencies (安装依赖)
       run: |
         python -m pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
-        # 安装 PyInstaller 打包工具
         pip install pyinstaller
 
-    - name: Build with PyInstaller (执行打包)
+    - name: Build with PyInstaller (执行纯净打包)
       run: |
-        # --onefile: 打包成单个 exe
-        # --clean: 清理缓存
-        # --name: 指定输出的 exe 名字
+        # --onefile: 打成单文件 exe
+        # --clean: 清除缓存防止幽灵 Bug
+        # --name: 指定生成的软件名字
         pyinstaller --onefile --clean --name QQMusicLiveBot run_v1_bot.py
 
-    - name: Upload Artifact (上传生成的 EXE)
+    - name: Upload Artifact (上传生成的 EXE 供下载)
       uses: actions/upload-artifact@v4
       with:
         name: QQMusic-Live-Bot-Windows-x64
